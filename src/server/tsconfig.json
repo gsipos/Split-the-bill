@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"charset": "utf-8",
+		"declaration": true,
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"out": "../../built/server/server.js"
+	},
+	"files": [
+		"server.ts"
+	]
+}

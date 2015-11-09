@@ -1,0 +1,22 @@
+{
+  "name": "split-the-bill",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "azure": "^0.10.6",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "del": "^2.0.1",
+    "gulp": "^3.9.0",
+    "gulp-typescript": "^2.8.2",
+    "require-dir": "^0.3.0"
+  },
+  "private": true
+}
