@@ -29,9 +29,6 @@ namespace SplitTheBill.Model {
 	
 	export type ExpenseId = string;
 	export interface Expense extends IdentifiedEntity<ExpenseId> {
-		payerTransactions: UserTransactionId[];
-		debtorTransactions: UserTransactionId[];
-		
 		totalAmount: number;
 		items: ExpenseItem[];
 		
