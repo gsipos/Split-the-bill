@@ -6,7 +6,7 @@ var del = require('del');
 var paths = gulp.paths;
 
 gulp.task('clean', function() {
-	del([paths.built+'/']);
+	del([paths.builtDir+'/']);
 });
 
 

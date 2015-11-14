@@ -8,8 +8,11 @@ gulp.paths = {
   serverSrc : 'src/server',
   dist: 'dist',
   tmp: '.tmp',
-  built: 'built',
-  builtClient: 'built/client'
+  builtDir: 'built',
+  built: {
+    client: 'built/client',
+    server: 'built/server'
+  }
 };
 
 require('require-dir')('./gulp');

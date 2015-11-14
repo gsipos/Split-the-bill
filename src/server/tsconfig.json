@@ -5,7 +5,8 @@
 		"declaration": true,
 		"sourceMap": true,
 		"noImplicitAny": true,
-		"out": "../../built/server/server.js"
+		"out": "../../built/server/server.js",
+		"outDir": "."
 	},
 	"files": [
 		"server.ts"

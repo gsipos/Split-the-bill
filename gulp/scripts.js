@@ -17,7 +17,7 @@ gulp.task('client-scripts', function () {
 gulp.task('server-scripts', function () {
 	return gulp.src([paths.serverSrc + '/**/*.ts'])
 		.pipe(ts(serverProject))
-		.pipe(gulp.dest('.'));
+		.pipe(gulp.dest(''));
 });
 
 gulp.task('scripts', ['client-scripts', 'server-scripts']);
