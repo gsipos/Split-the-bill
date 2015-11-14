@@ -2,7 +2,7 @@
 
 import * as azure from 'azure';
 
-export namespace SplitTheBill.Server.StartUp {
+namespace SplitTheBill.Server.StartUp {
 
 	var createTableCallback: azure.CreateTableIfNotExistsCallback = (error, result, response) => {
 		if (error) {

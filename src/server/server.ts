@@ -6,6 +6,6 @@ namespace SplitTheBill.Server {
 	
 	
 	var app = express();
-	
+	Server.StartUp.setUpTables();
 	
 }

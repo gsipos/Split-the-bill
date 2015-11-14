@@ -41,6 +41,25 @@ namespace SplitTheBill.Server.Tables {
 		public totalAmount: number;
 		private 'totalAmount@odata.type': string = ODataType.Int64;
 		
+		public itemsString: string;
+		private 'itemsString@odata.type': string = ODataType.String;
 		
+		public spentAt: Date;
+		private 'spentAt@odata.type': string = ODataType.DateTime;
+		
+		public description: string;
+		private 'description@odata.tye': string = ODataType.String;
+		
+		public category: string;
+		private 'category@odata.type': string = ODataType.String;
+		
+		private tagsString: string;
+		private 'tagsString@odata.type': string = ODataType.String;
+		
+		public get items(): Model.ExpenseItem[] { return JSON.parse(this.itemsString); }
+		public set items(newItems: Model.ExpenseItem[]) { this.itemsString = JSON.stringify(newItems) }
+		
+		public get tags() { return this.tagsString.split(','); }
+		public set tags(newTags: string[]) { this.tagsString = newTags.join(',')}
 	}
 }

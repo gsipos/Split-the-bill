@@ -3,3 +3,5 @@
 
 /// <reference path="startup/startup.ts" />
 /// <reference path="tables/data-types.ts" />
+
+/// <reference path="server.ts" />
