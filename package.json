@@ -2,12 +2,12 @@
   "name": "split-the-bill",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "built/server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Gergely Sipos",
+  "license": "MIT",
   "dependencies": {
     "azure": "^0.10.6",
     "express": "^4.13.3"

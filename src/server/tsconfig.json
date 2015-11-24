@@ -5,10 +5,12 @@
 		"declaration": true,
 		"sourceMap": true,
 		"noImplicitAny": true,
-		"out": "../../built/server/server.js",
-		"outDir": "."
+		"outDir": "../../built/"
 	},
 	"files": [
-		"server.ts"
+		"server.ts",
+		"startup/startup.ts",
+		"tables/tables.ts",
+		"tables/service.ts"
 	]
 }

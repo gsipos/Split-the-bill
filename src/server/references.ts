@@ -1,7 +1,6 @@
 /// <reference path="../../typings/tsd.d.ts" />
-/// <reference path="../shared/references.ts" />
+/// <reference path="../shared/split-the-bill.d.ts" />
 
 /// <reference path="startup/startup.ts" />
-/// <reference path="tables/data-types.ts" />
 
 /// <reference path="server.ts" />

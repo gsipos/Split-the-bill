@@ -3,3 +3,6 @@ bower_components/
 typings/
 built/
 .idea/
+src/**/*.js
+src/**/*.d.ts
+src/**/*.js.map

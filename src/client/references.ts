@@ -1,3 +1,3 @@
 /// <reference path="../../typings/tsd.d.ts" />
-/// <reference path="../shared/expense.ts" />
+/// <reference path="../shared/split-the-bill.d.ts" />
 
