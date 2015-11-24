@@ -4,5 +4,6 @@ typings/
 built/
 .idea/
 src/**/*.js
-src/**/*.d.ts
+src/client/*.d.ts
+src/server/*.d.ts
 src/**/*.js.map
