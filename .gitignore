@@ -7,3 +7,7 @@ src/**/*.js
 src/client/*.d.ts
 src/server/*.d.ts
 src/**/*.js.map
+.vs
+.ntvs_analysis.dat
+*.njsproj
+obj/
