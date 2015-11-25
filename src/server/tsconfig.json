@@ -11,6 +11,7 @@
 		"server.ts",
 		"startup/startup.ts",
 		"tables/tables.ts",
-		"tables/service.ts"
+		"tables/service.ts",
+		"tables/expense-item-service.ts"
 	]
 }

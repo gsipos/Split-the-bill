@@ -1,9 +1,11 @@
 /// <reference path="../../typings/tsd.d.ts" />
+import azure = require('azure');
 
 declare namespace SplitTheBill {
+
 	namespace Model {
 
-		interface Entity<I extends string, P extends string> {
+		interface Entity<I extends string, P extends string> extends azure.Entity{
 			RowKey: I;
 			PartitionKey: P;
 			TimeStamp: Date;

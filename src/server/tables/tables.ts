@@ -15,6 +15,10 @@ abstract class ODataType {
 	public static String: string = "Edm.String";
 }
 
+export class Name {
+	public static EXPENSE_ITEM = "ExpenseItem";
+}
+
 export abstract class Entity implements Model.Entity<string, string>{
 	public RowKey: string; //TODO
 	public PartitionKey: string; //TODO
