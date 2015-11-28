@@ -18,7 +18,8 @@ export abstract class ODataType {
 export class Name {
 	public static USER = "User";
 	public static EXPENSE = "Expense";
-	public static EXPENSE_ITEM = "ExpenseItem";
+    public static EXPENSE_ITEM = "ExpenseItem";
+    public static EXPENSE_CATEGORY = "ExpenseCategory";
 }
 
 export abstract class Entity implements Model.Entity<string, string>{
@@ -56,4 +57,11 @@ export class Expense extends Entity implements Model.Expense {
 export class ExpenseItem extends Entity implements Model.ExpenseItem {
 	public amount: number;
 	public expenseId: string;
+}
+
+export namespace Internal {
+    export class AuditLog extends Entity {
+        public message: string;
+        private 'message@odata.type' = ODataType.String;
+	}
 }

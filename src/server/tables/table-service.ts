@@ -1,6 +1,7 @@
 /// <reference path="../references.ts" />
 
 import * as azure from 'azure';
+import * as tables from './tables';
 
 var createTableCallback: azure.CreateTableIfNotExistsCallback = (error, result, response) => {
 	if (error) {
@@ -28,10 +29,10 @@ export default class TableService {
 	}
 
 	public initializeTables(): void {
-		this.storageClient.createTableIfNotExists('User', createTableCallback);
-		this.storageClient.createTableIfNotExists('ExpenseCategory', createTableCallback);
-		this.storageClient.createTableIfNotExists('Expense', createTableCallback);
-		this.storageClient.createTableIfNotExists('ExpenseItem', createTableCallback);
+		this.storageClient.createTableIfNotExists(tables.Name.USER, createTableCallback);
+		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE_CATEGORY, createTableCallback);
+		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE, createTableCallback);
+		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE_ITEM, createTableCallback);
 	}
 	
 	public insertEntity<E extends azure.Entity>(entity: E, tableName: string): Promise<E> {

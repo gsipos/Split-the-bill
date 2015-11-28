@@ -3,6 +3,7 @@ import Model = SplitTheBill.Model;
 
 import * as tables from './tables';
 import TableService from './table-service';
+import * as uuid from 'node-uuid';
 
 export default class UserService {
 	private tableService = new TableService();
@@ -12,6 +13,7 @@ export default class UserService {
 	}
 	
 	public insert(user: Model.User) {
+		user.RowKey = uuid.v4();
 		return this.tableService.insertEntity(this.convertModelUserToRow(user), tables.Name.USER);
 	}
 	

@@ -5,11 +5,11 @@ declare namespace SplitTheBill {
 	namespace Model {
 
 		interface Entity<I extends string, P extends string> {
-			RowKey: I;
 			PartitionKey: P;
-			TimeStamp?: Date;
+			RowKey: I;
+			Timestamp?: Date;
 			etag?: string;
-			[property: string]: string | number | boolean | Date;
+			[property: string]: string | number | boolean | Date | I | P;
 		}
 
 		type UserId = string;

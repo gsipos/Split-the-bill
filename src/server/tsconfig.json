@@ -14,6 +14,8 @@
 		"tables/tables.ts",
 		"tables/table-service.ts",
 		"tables/expense-item-service.ts",
-		"tables/expense-service.ts"
+		"tables/expense-service.ts",
+		"tables/user-service.ts",
+		"api/user-api.ts"
 	]
 }

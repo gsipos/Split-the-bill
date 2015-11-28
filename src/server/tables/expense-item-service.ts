@@ -1,6 +1,7 @@
 /// <reference path="../references.ts" />
 import Model = SplitTheBill.Model;
 
+import * as uuid from 'node-uuid';
 import * as tables from './tables';
 import TableService from './table-service';
 
@@ -8,6 +9,7 @@ export default class ExpenseItemService {
 	private tableService = new TableService();
 	
 	public insertExpenseItem(item: Model.ExpenseItem): Promise<Model.ExpenseItem> {
+		item.RowKey = uuid.v4();
 		return this.tableService.insertEntity(this.convertModelExpenseItemToRow(item), tables.Name.EXPENSE_ITEM);
 	}
 	
