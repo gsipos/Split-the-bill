@@ -12,7 +12,7 @@
 		"server.ts",
 		"startup/startup.ts",
 		"tables/tables.ts",
-		"tables/service.ts",
+		"tables/table-service.ts",
 		"tables/expense-item-service.ts",
 		"tables/expense-service.ts"
 	]

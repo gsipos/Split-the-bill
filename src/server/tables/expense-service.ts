@@ -2,7 +2,7 @@
 import Model = SplitTheBill.Model;
 
 import * as tables from './tables';
-import TableService from './service';
+import TableService from './table-service';
 
 export default class ExpenseService {
 	private tableService = new TableService();

@@ -2,15 +2,10 @@
 import Model = SplitTheBill.Model;
 
 import * as tables from './tables';
-import TableService from './service';
+import TableService from './table-service';
 
 export default class ExpenseItemService {
 	private tableService = new TableService();
-	
-	
-	constructor() {
-		//somthing will come or not
-	}
 	
 	public insertExpenseItem(item: Model.ExpenseItem): Promise<Model.ExpenseItem> {
 		return this.tableService.insertEntity(this.convertModelExpenseItemToRow(item), tables.Name.EXPENSE_ITEM);

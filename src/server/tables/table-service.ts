@@ -38,6 +38,10 @@ export default class TableService {
 		return this.callEntityOperation(this.storageClient.insertEntity, tableName, entity);
 	}
 	
+	public pointQueryEntity<E extends azure.Entity>(partitionKey: string, rowKey: string, tableName: string): Promise<E>{
+		return new Promise((resolve, reject) => this.storageClient.queryEntity(tableName, partitionKey, rowKey, this.getThenableStorageCallback(resolve, reject)));
+	}
+	
 	public insertEntities<E extends azure.Entity>(entities: E[], tableName: string): Promise<E[]> {		
 		return Promise.all<E>(entities.map(entity => this.insertEntity(entity, tableName)));
 	}

@@ -16,6 +16,7 @@ export abstract class ODataType {
 }
 
 export class Name {
+	public static USER = "User";
 	public static EXPENSE = "Expense";
 	public static EXPENSE_ITEM = "ExpenseItem";
 }
@@ -31,11 +32,6 @@ export abstract class Entity implements Model.Entity<string, string>{
 export class User extends Entity implements Model.User {
 	public name: string;
 	public profilePicture: string;
-}
-
-export class UserWithOdata extends User {
-	private 'name@odata.type': string = ODataType.String;
-	private 'profilePicture@odata.type': string = ODataType.String;
 }
 
 export class ExpenseCategory extends Entity implements Model.ExpenseCategory {
