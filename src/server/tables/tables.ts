@@ -4,7 +4,7 @@ import Model = SplitTheBill.Model;
 
 import * as azure from 'azure';
 
-abstract class ODataType {
+export abstract class ODataType {
 	public static ByteArray: string = "Edm.Binary";
 	public static Boolean: string = "Edm.Boolean";
 	public static DateTime: string = "Edm.DateTime";
@@ -16,6 +16,7 @@ abstract class ODataType {
 }
 
 export class Name {
+	public static EXPENSE = "Expense";
 	public static EXPENSE_ITEM = "ExpenseItem";
 }
 
@@ -23,6 +24,8 @@ export abstract class Entity implements Model.Entity<string, string>{
 	public RowKey: string; //TODO
 	public PartitionKey: string; //TODO
 	public TimeStamp: Date;
+	public etag: string;
+	[property: string]: string | number | boolean | Date;
 }
 
 export class User extends Entity implements Model.User {
@@ -54,19 +57,7 @@ export class Expense extends Entity implements Model.Expense {
 	public category: string;
 }
 
-export class ExpenseWithOdata extends Expense {
-	private 'totalAmount@odata.type': string = ODataType.Int64;
-	private 'spentAt@odata.type': string = ODataType.DateTime;
-	private 'description@odata.tye': string = ODataType.String;
-	private 'category@odata.type': string = ODataType.String;
-}
-
 export class ExpenseItem extends Entity implements Model.ExpenseItem {
 	public amount: number;
 	public expenseId: string;
-}
-
-export class ExpenseItemWithOdata extends ExpenseItem {
-	private 'amount@odata.type' = ODataType.Int64;
-	private 'expenseId@odata.type' = ODataType.String;
 }

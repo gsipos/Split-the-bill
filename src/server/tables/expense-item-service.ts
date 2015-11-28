@@ -1,6 +1,5 @@
 /// <reference path="../references.ts" />
 import Model = SplitTheBill.Model;
-import azure = require('azure');
 
 import * as tables from './tables';
 import TableService from './service';
@@ -10,39 +9,30 @@ export default class ExpenseItemService {
 	
 	
 	constructor() {
-		
+		//somthing will come or not
 	}
 	
 	public insertExpenseItem(item: Model.ExpenseItem): Promise<Model.ExpenseItem> {
-		var itemWithOdata = new tables.ExpenseItemWithOdata();
-		
-		itemWithOdata.RowKey = item.RowKey;
-		itemWithOdata.PartitionKey = item.PartitionKey;
-		itemWithOdata.amount = item.amount;
-		itemWithOdata.expenseId = item.expenseId;
-		
-		var storageClient = this.tableService.storageClient;
-		
-		return new Promise<Model.ExpenseItem>(( resolve, reject) => {
-			storageClient.insertEntity(tables.Name.EXPENSE_ITEM, itemWithOdata, (error: Error, entity: Model.ExpenseItem, response: azure.WebResponse) => {
-				if(error){
-					reject(error);
-				} else {
-					resolve(entity);
-				}
-			});
-		});
+		return this.tableService.insertEntity(this.convertModelExpenseItemToRow(item), tables.Name.EXPENSE_ITEM);
 	}
 	
 	public insertExpenseItemList(items: Model.ExpenseItem[]) {
-		var storageClient = this.tableService.storageClient;
-		storageClient.beginBatch();
-		items.forEach( item => this.insertExpenseItem(item));
-		storageClient.commitBatch((error: any, operationResponses: any[], response: any) => {
-			//TODO
-		});
-		var a = new Promise();
+		var rowItems = items.map(item => this.convertModelExpenseItemToRow(item));
+		return this.tableService.insertEntities(rowItems, tables.Name.EXPENSE_ITEM);
 	}
 	
-	
+	private convertModelExpenseItemToRow(item: Model.ExpenseItem): tables.ExpenseItem {
+		var row = new tables.ExpenseItem();
+		
+		row.RowKey = item.RowKey;
+		row.PartitionKey = item.PartitionKey;
+		
+		row.amount = item.amount;
+		row['amount@odata.type'] = tables.ODataType.Int64;
+		
+		row.expenseId = item.expenseId;
+		row['expense@odata.type'] = tables.ODataType.String;
+		
+		return row;
+	}
 } 
