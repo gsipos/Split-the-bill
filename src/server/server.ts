@@ -11,4 +11,6 @@ namespace SplitTheBill.Server {
 	
 	app.use(express.static('client'));
 	app.use(userApi.api);
+	
+	app.get('/omfg', (req, res) => res.send('Lol it works! :)'));
 }

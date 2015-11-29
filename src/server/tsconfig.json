@@ -6,7 +6,7 @@
 		"sourceMap": true,
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
-		"outDir": "../../built/"
+		"outDir": "../../built/server/"
 	},
 	"files": [
 		"server.ts",
