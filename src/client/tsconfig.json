@@ -1,10 +1,15 @@
 {
 	"compilerOptions": {
-		"target": "ES6",
+		"target": "ES5",
+		"module": "amd",
 		"charset": "utf-8",
 		"noImplicitAny": true,
+		"suppressImplicitAnyIndexErrors": true,
 		"declaration": true,
 		"sourceMap": true,
-		"out": "built/client/app.js"
-	}
+		"outDir": "../../built/client/"
+	},
+	"filed": [
+		"index.ts"
+	]
 }

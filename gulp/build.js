@@ -9,5 +9,9 @@ gulp.task('clean', function() {
 	del([paths.builtDir+'/']);
 });
 
+gulp.task('html', function () { 
+	return gulp.src(paths.clientSrc + '/**/*.html')
+		.pipe(gulp.dest(paths.built.client+'/'));
+});
 
 gulp.task('build', ['scripts']);

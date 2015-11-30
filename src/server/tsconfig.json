@@ -11,6 +11,7 @@
 	},
 	"files": [
 		"server.ts",
+		"environment.ts",
 		"startup/startup.ts",
 		"tables/tables.ts",
 		"tables/table-service.ts",

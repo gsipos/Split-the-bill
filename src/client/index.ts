@@ -2,6 +2,6 @@
 
 module SplitTheBill.Client{
 	
-	angular.module('SplitTheBill');
+	var app = angular.module('SplitTheBill', ['ngMaterial']);
 	
 }

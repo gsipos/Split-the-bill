@@ -2,6 +2,7 @@
 
 import * as azure from 'azure';
 import * as tables from './tables';
+import Environment from '../environment';
 
 var createTableCallback: azure.CreateTableIfNotExistsCallback = (error, result, response) => {
 	if (error) {
@@ -18,14 +19,13 @@ interface EntityOperationCall<R> {
 }
 
 export default class TableService {
-	private get accountName() { return process.env.accountName; }
-	private get accountKey() { return process.env.accountKey; }
+	private env = new Environment();
 
 	public storageClient: azure.TableService;
 
 	constructor() {
 		var retryOperations = new azure.ExponentialRetryPolicyFilter();
-		this.storageClient = <azure.TableService>azure.createTableService(this.accountName, this.accountKey).withFilter(retryOperations);
+		this.storageClient = <azure.TableService>azure.createTableService(this.env.accountName, this.env.accountKey).withFilter(retryOperations);
 	}
 
 	public initializeTables(): void {
