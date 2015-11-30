@@ -17,7 +17,12 @@
     "del": "^2.0.1",
     "gulp": "^3.9.0",
     "gulp-typescript": "^2.8.2",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "tslint": "^3.0.0",
+    "typescript": "^1.6.2"
   },
-  "private": true
+  "private": true,
+  "engines": {
+    "node": ">=4.0.0"
+  }
 }

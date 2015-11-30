@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
-		"target": "ES6",
+		"target": "ES5",
+		"module": "commonjs",
 		"charset": "utf-8",
 		"declaration": true,
 		"sourceMap": true,
