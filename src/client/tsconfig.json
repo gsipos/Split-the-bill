@@ -7,9 +7,9 @@
 		"suppressImplicitAnyIndexErrors": true,
 		"declaration": true,
 		"sourceMap": true,
-		"outDir": "../../built/client/"
+		"outFile": "../../built/client/index.js"
 	},
-	"filed": [
+	"files": [
 		"index.ts"
 	]
 }

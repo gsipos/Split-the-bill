@@ -17,6 +17,10 @@ export default class UserService {
 		return this.tableService.insertEntity(this.convertModelUserToRow(user), tables.Name.USER);
 	}
 	
+	public getAll(): Promise<tables.User[]> {
+		return this.tableService.getAll(tables.Name.USER);
+	}
+	
 	public convertModelUserToRow(user: Model.User): tables.User {
 		var row = new tables.User();
 		

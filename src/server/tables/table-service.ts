@@ -47,6 +47,17 @@ export default class TableService {
 		return Promise.all<E>(entities.map(entity => this.insertEntity(entity, tableName)));
 	}
 	
+	public getAll<E extends azure.Entity>(tableName: string): Promise<E[]> {
+		var query = azure.TableQuery.select('*').from(tableName);
+		return new Promise((resolve, reject) => this.storageClient.queryEntities(query, (error, entities, token, webresponse) => { 
+			if (error) {
+				reject(error);
+			} else {
+				resolve(entities);
+			}
+		}));
+	}
+	
 	private getThenableStorageCallback<R>(resolve: Function, reject: Function): EntityOperationCallback<R> {
 		return (error: Error, result: R, response: azure.WebResponse) => { 
 			if (error) {

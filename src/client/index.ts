@@ -2,6 +2,7 @@
 
 module SplitTheBill.Client{
 	
-	var app = angular.module('SplitTheBill', ['ngMaterial']);
+	var app = angular.module('SplitTheBill', ['ngMaterial'])
+		.directive('stbUserEdit', User.StbUserEditDirective);
 	
 }
