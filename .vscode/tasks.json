@@ -14,21 +14,24 @@
 	"isShellCommand": true,
 	"tasks": [
 		{
-			"taskName": "clientScripts",
+			"taskName": "Build Server Scripts",
 			"suppressTaskName": true,
 			"isBuildCommand": true,
-			"showOutput": "silent",
-			"args": ["-p","src/client/"],
+			//"showOutput": "silent",
+			"args": ["src/server"],
 			"problemMatcher": "$tsc"
 		},
 		{
-			"taskName": "serverScripts",
+			"taskName": "Build Client Scripts",
 			"suppressTaskName": true,
 			"isBuildCommand": true,
-			"showOutput": "silent",
-			"args": ["-p","src/server/"],
+			//"showOutput": "silent",
+			"args": ["src/client"],
 			"problemMatcher": "$tsc"
 		}
+	],
+	"args": [
+		"-p"
 	]
 }
 

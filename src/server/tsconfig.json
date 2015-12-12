@@ -1,23 +1,11 @@
 {
 	"compilerOptions": {
-		"target": "ES5",
+		"target": "ES6",
 		"module": "commonjs",
 		"charset": "utf-8",
 		"declaration": true,
-		"sourceMap": true,
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
 		"outDir": "../../built/"
-	},
-	"files": [
-		"server.ts",
-		"environment.ts",
-		"startup/startup.ts",
-		"tables/tables.ts",
-		"tables/table-service.ts",
-		"tables/expense-item-service.ts",
-		"tables/expense-service.ts",
-		"tables/user-service.ts",
-		"api/user-api.ts"
-	]
+	}
 }

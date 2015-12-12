@@ -19,13 +19,11 @@ interface EntityOperationCall<R> {
 }
 
 export default class TableService {
-	private env = new Environment();
-
 	public storageClient: azure.TableService;
 
 	constructor() {
 		var retryOperations = new azure.ExponentialRetryPolicyFilter();
-		this.storageClient = <azure.TableService>azure.createTableService(this.env.accountName, this.env.accountKey).withFilter(retryOperations);
+		this.storageClient = <azure.TableService>azure.createTableService(Environment.accountName, Environment.accountKey).withFilter(retryOperations);
 	}
 
 	public initializeTables(): void {
@@ -36,11 +34,11 @@ export default class TableService {
 	}
 	
 	public insertEntity<E extends azure.Entity>(entity: E, tableName: string): Promise<E> {
-		return this.callEntityOperation(this.storageClient.insertEntity, tableName, entity);
+		return this.callEntityOperation<E>(this.storageClient.insertEntity, tableName, entity);
 	}
 	
 	public pointQueryEntity<E extends azure.Entity>(partitionKey: string, rowKey: string, tableName: string): Promise<E>{
-		return new Promise((resolve, reject) => this.storageClient.queryEntity(tableName, partitionKey, rowKey, this.getThenableStorageCallback(resolve, reject)));
+		return new Promise<E>((resolve, reject) => this.storageClient.queryEntity(tableName, partitionKey, rowKey, this.getThenableStorageCallback(resolve, reject)));
 	}
 	
 	public insertEntities<E extends azure.Entity>(entities: E[], tableName: string): Promise<E[]> {		
@@ -48,7 +46,8 @@ export default class TableService {
 	}
 	
 	public getAll<E extends azure.Entity>(tableName: string): Promise<E[]> {
-		var query = azure.TableQuery.select('*').from(tableName);
+		var query = new azure.TableQuery();
+		
 		return new Promise((resolve, reject) => this.storageClient.queryEntities(query, (error, entities, token, webresponse) => { 
 			if (error) {
 				reject(error);
@@ -69,6 +68,6 @@ export default class TableService {
 	}
 	
 	private callEntityOperation<E>(operation: EntityOperationCall<E>, tableName: string, entity: E): Promise<E> {
-		return new Promise((resolve, reject) => operation(tableName, entity, this.getThenableStorageCallback(resolve, reject)));
+		return new Promise<E>((resolve, reject) => operation(tableName, entity, this.getThenableStorageCallback(resolve, reject)));
 	}
 }

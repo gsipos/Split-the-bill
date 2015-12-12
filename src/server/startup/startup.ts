@@ -1,4 +1,5 @@
 /// <reference path="../../../typings/tsd.d.ts" />
+"use strict";
 
 import * as azure from 'azure';
 import * as tables from '../tables/tables';

@@ -11,3 +11,4 @@ src/**/*.js.map
 .ntvs_analysis.dat
 *.njsproj
 obj/
+live-log.cmd

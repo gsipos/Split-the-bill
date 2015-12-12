@@ -20,13 +20,6 @@
     ],
     "no-arg": true,
     "no-bitwise": true,
-    "no-console": [true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
     "no-construct": true,
     "no-constructor-vars": false,
     "no-debugger": true,
@@ -57,10 +50,7 @@
       "propertySignature",
       "variableDeclarator"
     ],
-    "use-strict": [false,
-      "check-module",
-      "check-function"
-    ],
+    "use-strict": true,
     "variable-name": false
   }
 }
