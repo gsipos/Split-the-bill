@@ -1,4 +1,5 @@
 /// <reference path="references.ts" />
+"use strict";
 import * as appRoles from './application-role';
 
 interface ProcessEnvironment {
