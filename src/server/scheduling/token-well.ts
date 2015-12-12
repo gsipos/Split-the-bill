@@ -1,4 +1,5 @@
 /// <reference path="../../../typings/tsd.d.ts" />
+"use strict";
 
 export enum TokenWellState {
 	DEPLETED,

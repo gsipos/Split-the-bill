@@ -1,4 +1,5 @@
 /// <reference path="../references.ts" />
+"use strict";
 import Model = SplitTheBill.Model;
 
 import * as uuid from 'node-uuid';

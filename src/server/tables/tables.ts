@@ -1,5 +1,6 @@
 
 /// <reference path="../references.ts" />
+"use strict";
 import Model = SplitTheBill.Model;
 
 import * as azure from 'azure';

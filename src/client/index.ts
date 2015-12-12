@@ -1,4 +1,5 @@
-/// <reference path="references.ts" />
+/// <reference path="./references.ts" /> 
+"use strict";
 
 module SplitTheBill.Client{
 	
