@@ -1,6 +1,6 @@
-/// <reference path="../references.ts" /> 
+/// <reference path="./references.ts" /> 
 "use strict";
-import * as environment from './environment';
+import Environment from './environment';
 
 export enum Type {
 	WEB,
@@ -20,7 +20,7 @@ export class Initializer {
 	}
 
 	public startRoles() {
-		environment.default.roles.forEach(roleId => {
+		Environment.roles.forEach(roleId => {
 			var role = this.roles[roleId];
 			if (!role) {
 				throw new Error('No executor registered for role: ' + Type[roleId]);

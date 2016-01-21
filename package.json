@@ -14,12 +14,12 @@
     "node-uuid": "^1.4.7"
   },
   "devDependencies": {
-    "del": "^2.0.1",
+    "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-typescript": "^2.10.0",
     "require-dir": "^0.3.0",
-    "tslint": "^3.0.0",
-    "typescript": "^1.7.3"
+    "tslint": "^3.2.1",
+    "typescript": "^1.7.5"
   },
   "private": true,
   "engines": {
