@@ -4,12 +4,13 @@
 import * as streams from 'stream';
 import * as azure from 'azure';
 import QueueService from './queue-service';
+import * as queues from './queues';
 
 export default class QueueStream extends streams.Readable {
     
     
     constructor(
-        public queueName: string,
+        public queueName: queues.Queues,
         public service: QueueService
     ) {
         super({ objectMode: true });
@@ -23,7 +24,6 @@ export default class QueueStream extends streams.Readable {
 }
 
 export class ParseMessageStream<T> extends streams.Transform {
-    
     constructor() {
         super({ objectMode: true});
     }
@@ -35,6 +35,19 @@ export class ParseMessageStream<T> extends streams.Transform {
         };
         this.push(parsedMessage);
         done();
+    }
+}
+
+export class DeleteMessageStream extends streams.Writable {
+    constructor(
+        public queueName: queues.Queues,
+        public service: QueueService
+    ) { super({ objectMode: true }); }
+    
+    _write(chunk: QueueMessageObject<any> & azure.QueueMessageResult, encoding: string, done: Function) {
+        var messageId = chunk.messageid || chunk.message.messageid;
+        var popreceipt = chunk.popreceipt || chunk.message.popreceipt;
+        this.service.deleteMessage(this.queueName, messageId, popreceipt).then(() => done());
     }
 }
 

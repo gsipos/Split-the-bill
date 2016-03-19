@@ -1,3 +1,4 @@
+/// <reference path="../references.ts" />
 import * as scheduling from '../scheduling/polling-scheduler';
 import TokenWell from '../scheduling/token-Well';
 import QueueService from './queue-service';
