@@ -24,10 +24,7 @@
     "node-uuid": "1.4.7"
   },
   "devDependencies": {
-    "del": "2.2.1",
     "del-cli": "0.2.0",
-    "gulp": "3.9.1",
-    "gulp-typescript": "2.13.6",
     "require-dir": "0.3.0",
     "tslint": "3.11.0",
     "typescript": "1.8.10"
