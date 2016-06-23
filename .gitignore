@@ -2,6 +2,8 @@ node_modules/
 bower_components/
 typings/
 built/
+app/client/
+app/server/
 .idea/
 src/**/*.js
 src/client/*.d.ts
@@ -11,4 +13,3 @@ src/**/*.js.map
 .ntvs_analysis.dat
 *.njsproj
 obj/
-live-log.cmd

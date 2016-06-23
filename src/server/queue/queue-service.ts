@@ -23,6 +23,10 @@ export default class QueueService{
         return new Promise((resolve, reject) =>
             this.queueClient.deleteMessage(queues.getName(queueName), messageId, popreceipt, this.promiseCallback(resolve, reject)));
     }
+
+    createMessage(queueName: queues.Queues, messageText: string): Promise<azure.QueueMessageResult> {
+        return new Promise((resolve, reject) => this.queueClient.createMessage(queues.getName(queueName), messageText, this.promiseCallback(resolve, reject)));
+    }
     
     private promiseCallback<T>(resolve: Function, reject: Function): azure.StorageCallback<T> {
         return (err, result, webResponse) => { 

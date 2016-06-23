@@ -1,14 +1,8 @@
 /// <reference path="../references.ts" />
-import * as scheduling from '../scheduling/polling-scheduler';
-import TokenWell from '../scheduling/token-Well';
 import QueueService from './queue-service';
-
-export class BaseQueueProcessor extends NodeJS.EventEmitter {
-    public queueName: string;
-    public scheduler: scheduling.PollingScheduler;
-    public tokenWell: TokenWell;
-}
-
+import {QueueStream} from 'queue-stream';
+import {Queues} from 'queues';
+import * as hl from 'highland';
 
 export default class QueueManager {
     qSvc: QueueService = new QueueService();
@@ -17,6 +11,14 @@ export default class QueueManager {
         
     }
     
-    registerQueueProcessor(queueName: string ) { }
-    
+    registerQueueProcessor(queueName: string) { }
+
+    createQueue<D>(name: Queues) {
+        return new QueueStream<D>(name, this.qSvc);
+    }
+
+    setupSaveExpensePipe() {
+        let saveExpenseQStream = new QueueStream<any>(Queues.SAVE_EXPENSE, this.qSvc);
+        
+    }
 } 

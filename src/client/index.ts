@@ -1,9 +1,3 @@
-/// <reference path="./references.ts" /> 
-"use strict";
+/// <reference path="../../typings/tsd.d.ts" />
 
-module SplitTheBill.Client{
-	
-	angular.module('SplitTheBill', ['ngMaterial'])
-		.directive('stbUserEdit', User.StbUserEditDirective);
-	
-}
+angular.module('SplitTheBill', ['ngMaterial']);

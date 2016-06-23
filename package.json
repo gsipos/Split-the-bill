@@ -4,22 +4,33 @@
   "description": "",
   "main": "./server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+
+    "clientTsc": "tsc -p src/client",
+    "serverTsc": "tsc -p src/server",
+    "tsc": "npm run clientTsc & npm run serverTsc",
+
+    "clean": "del ./lib",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "liveLog": "azure site log tail split-the-bill",
+
+    "postinstall": "npm run tsc"
   },
   "author": "Gergely Sipos",
   "license": "MIT",
   "dependencies": {
     "azure": "^0.10.6",
-    "express": "^4.13.3",
-    "node-uuid": "^1.4.7"
+    "express": "4.14.0",
+    "highland": "2.8.1",
+    "node-uuid": "1.4.7"
   },
   "devDependencies": {
-    "del": "^2.2.0",
-    "gulp": "^3.9.0",
-    "gulp-typescript": "^2.10.0",
-    "require-dir": "^0.3.0",
-    "tslint": "^3.2.1",
-    "typescript": "^1.7.5"
+    "del": "2.2.1",
+    "del-cli": "0.2.0",
+    "gulp": "3.9.1",
+    "gulp-typescript": "2.13.6",
+    "require-dir": "0.3.0",
+    "tslint": "3.11.0",
+    "typescript": "1.8.10"
   },
   "private": true,
   "engines": {
