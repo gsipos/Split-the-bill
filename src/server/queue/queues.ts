@@ -1,5 +1,4 @@
 /// <reference path="../references.ts" />
-"use strict";
 
 export enum Queues {
     SAVE_EXPENSE

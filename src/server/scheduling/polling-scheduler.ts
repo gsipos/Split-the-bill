@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/index.d.ts" />
 "use strict";
 import TokenWell from './token-well';
 
@@ -15,17 +15,17 @@ export class LinearPollingPolicy implements PollingPolicy {
 	speedUp(current: number, min: number, max: number) {
 		return Math.min(max, current + min);
 	}
-	
+
 	backOff(current: number, min: number, max: number) {
 		return Math.max(min, current - min);
 	}
-} 
+}
 
 export class ExponentialPollingPolicy implements PollingPolicy {
 	speedUp(current: number, min: number, max: number) {
 		return Math.min(max, current**2);
 	}
-	
+
 	backOff(current: number, min: number, max: number) {
 		return Math.max(min, Math.sqrt(current));
 	}

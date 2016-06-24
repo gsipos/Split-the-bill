@@ -6,6 +6,10 @@
 		"suppressImplicitAnyIndexErrors": true,
 		"declaration": true,
 		"sourceMap": true,
-        "outDir": "../../app/client/"
+		"module": "umd",
+        "outDir": "../../app/client/",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"removeComments": false
 	}
 }

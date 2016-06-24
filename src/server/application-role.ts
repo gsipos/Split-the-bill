@@ -3,8 +3,8 @@
 import Environment from './environment';
 
 export enum Type {
-	WEB,
-	BACKGROUND,
+    WEB,
+    BACKGROUND,
 }
 
 export interface RoleInstance {

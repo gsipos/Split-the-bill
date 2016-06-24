@@ -1,3 +1,6 @@
-/// <reference path="../../typings/tsd.d.ts" />
 
-angular.module('SplitTheBill', ['ngMaterial']);
+import { bootstrap } from '@angular/platform-browser-dynamic/esm/index';
+
+bootstrap();
+
+console.log('index.ts');
