@@ -1,4 +1,4 @@
-import { Component } from '@angular/core/esm';
+import { Component } from '@angular/core/esm/index';
 
 @Component({
   selector: 'my-app',

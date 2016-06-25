@@ -4,7 +4,7 @@ import * as express from 'express';
 import UserService from '../tables/user-service';
 
 var userSvc = new UserService();
-export var api = express();
+export var api: express.Express = express();
 
 api.get('/user',
 	(req, res) => userSvc.point(req.params.rowKey, req.params.partitionKey)
