@@ -6,7 +6,7 @@
 		"suppressImplicitAnyIndexErrors": true,
 		"declaration": true,
 		"sourceMap": true,
-		"module": "umd",
+		"module": "commonjs",
   	"outDir": "../../app/client/",
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,

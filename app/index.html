@@ -9,7 +9,9 @@
 </head>
 
 <body>
-	
-	<script type="module" src="client/index.js"></script>
+	<my-app></my-app>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.31/system.js"></script>
+	<script src="/app/systemjs.config.js"></script>
+	<script>SystemJS.import('client/index.js');</script>
 </body>
 </html>
