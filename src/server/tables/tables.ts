@@ -1,6 +1,6 @@
-import Model = SplitTheBill.Model;
+import * as Model from '../../shared/split-the-bill';
 
-import * as azure from 'azure';
+import {odataString, odataInt64, odataDateTime} from './odata-decorators';
 
 export abstract class ODataType {
 	public static ByteArray: string = "Edm.Binary";
@@ -23,43 +23,48 @@ export class Name {
 export abstract class Entity implements Model.Entity<string, string>{
 	public RowKey: string; //TODO
 	public PartitionKey: string; //TODO
-	public TimeStamp: Date;
+	public Timestamp: Date;
 	public etag: string;
 	[property: string]: string | number | boolean | Date;
 }
 
 export class User extends Entity implements Model.User {
+	@odataString
 	public name: string;
+	@odataString
 	public profilePicture: string;
 }
 
 export class ExpenseCategory extends Entity implements Model.ExpenseCategory {
+	@odataString
 	public icon: string;
+	@odataString
 	public name: string;
+	@odataString
 	public description: string;
-}
-
-export class ExpenseCategoryWithOdata extends ExpenseCategory {
-	private 'icon@odata.type' = ODataType.String;
-	private 'name@odata.type' = ODataType.String;
-	private 'descripttion@odata.type' = ODataType.String;
 }
 
 export class Expense extends Entity implements Model.Expense {
+	@odataString
 	public totalAmount: number;
+	@odataDateTime
 	public spentAt: Date;
+	@odataString
 	public description: string;
+	@odataString
 	public category: string;
 }
 
 export class ExpenseItem extends Entity implements Model.ExpenseItem {
+	@odataInt64
 	public amount: number;
+	@odataString
 	public expenseId: string;
 }
 
 export namespace Internal {
-    export class AuditLog extends Entity {
+	export class AuditLog extends Entity {
+				@odataString
         public message: string;
-        private 'message@odata.type' = ODataType.String;
 	}
 }

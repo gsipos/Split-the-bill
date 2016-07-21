@@ -1,4 +1,4 @@
-import Model = SplitTheBill.Model;
+import * as Model from '../../shared/split-the-bill';
 
 import * as uuid from 'node-uuid';
 import * as tables from './tables';
@@ -17,19 +17,11 @@ export default class ExpenseService {
 
 		row.RowKey = expense.RowKey;
 		row.PartitionKey = expense.PartitionKey;
-
 		row.totalAmount = expense.totalAmount;
-		row['totalAmount@odata.type'] = tables.ODataType.Int64;
-
 		row.spentAt = expense.spentAt;
-		row['spentAt@odata.type'] = tables.ODataType.DateTime;
-
 		row.description = expense.description;
-		row['description@odata.tye'] = tables.ODataType.String;
-		
 		row.category = expense.category;
-		row['category@odata.type'] = tables.ODataType.String;
-		
+
 		return row;
 	}
 }

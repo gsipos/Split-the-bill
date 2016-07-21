@@ -2,7 +2,7 @@ import * as azure from 'azure';
 import * as tables from './tables';
 import Environment from '../environment';
 
-var createTableCallback: azure.CreateTableIfNotExistsCallback = (error, result, response) => {
+var createTableCallback: azure.CreateTableIfNotExistsCallback = (error) => {
 	if (error) {
 		throw error;
 	}
@@ -44,9 +44,10 @@ export default class TableService {
 	}
 
 	public getAll<E extends azure.Entity>(tableName: string): Promise<E[]> {
-		var query = new azure.TableQuery();
-		
-		return new Promise((resolve, reject) => this.storageClient.queryEntities(query, (error, entities, token, webresponse) => { 
+		var query = new azure.TableQuery()
+			.from(tableName);
+
+		return new Promise((resolve, reject) => this.storageClient.queryEntities(query, (error, entities) => {
 			if (error) {
 				reject(error);
 			} else {
@@ -54,9 +55,9 @@ export default class TableService {
 			}
 		}));
 	}
-	
+
 	private getThenableStorageCallback<R>(resolve: Function, reject: Function): EntityOperationCallback<R> {
-		return (error: Error, result: R, response: azure.WebResponse) => { 
+		return (error: Error, result: R) => {
 			if (error) {
 				reject(error);
 			} else {
@@ -64,7 +65,7 @@ export default class TableService {
 			}
 		};
 	}
-	
+
 	private callEntityOperation<E>(operation: EntityOperationCall<E>, tableName: string, entity: E): Promise<E> {
 		return new Promise<E>((resolve, reject) => operation(tableName, entity, this.getThenableStorageCallback(resolve, reject)));
 	}

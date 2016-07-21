@@ -7,6 +7,7 @@
     "clientTsc": "tsc -p src/client",
     "ctsc:w": "tsc -p src/client -w",
     "serverTsc": "tsc -p src/server",
+		"tsc:server:watch": "tsc -p src/server -w",
     "tsc": "npm run clientTsc & npm run serverTsc",
     "clean": "del ./lib",
     "test": "echo \"Error: no test specified\" && exit 0",

@@ -1,50 +1,41 @@
-/// <reference path="../../typings/index.d.ts" />
 
-declare namespace SplitTheBill {
+interface Entity<I extends string, P extends string> {
+	PartitionKey: P;
+	RowKey: I;
+	Timestamp: Date;
+	etag: string;
+}
 
-	namespace Model {
+type UserId = string;
+interface User extends Entity<UserId, string> {
+	name: string;
+	profilePicture: string;
+}
 
-		interface Entity<I extends string, P extends string> {
-			PartitionKey: P;
-			RowKey: I;
-			Timestamp?: Date;
-			etag?: string;
-			[property: string]: string | number | boolean | Date | I | P;
-		}
+type ExpenseCategoryId = string;
+interface ExpenseCategory extends Entity<ExpenseCategoryId, string> {
+	name: string;
+	icon: string;
+	description: string;
+}
 
-		type UserId = string;
-		interface User extends Entity<UserId, string> {
-			name: string;
-			profilePicture: string;
-		}
+type ExpenseId = string;
+interface Expense extends Entity<ExpenseId, UserId> {
+	totalAmount: number;
+	spentAt: Date;
+	description: string;
+	category: ExpenseCategoryId;
+}
 
-		type ExpenseCategoryId = string;
-		interface ExpenseCategory extends Entity<ExpenseCategoryId, string> {
-			name: string;
-			icon: string;
-			description: string;
-		}
+interface ExpenseItem extends Entity<string, UserId> {
+	amount: number;
+	expenseId: string;
+}
 
-		type ExpenseId = string;
-		interface Expense extends Entity<ExpenseId, UserId> {
-			totalAmount: number;
-			spentAt: Date;
-			description: string;
-			category: ExpenseCategoryId;
-		}
-
-		interface ExpenseItem extends Entity<string, UserId> {
-			amount: number;
-			expenseId: string;
-		}
-	}
-
-	namespace Api {
+export namespace Api {
 		interface SaveExpense {
-			userId: Model.UserId;
-			expense: Model.Expense;
-			items: Model.ExpenseItem[];
+		userId: UserId;
+		expense: Expense;
+		items: ExpenseItem[];
 		}
-	}
-
 }

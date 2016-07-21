@@ -6,6 +6,9 @@
 		"declaration": true,
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
-		"outDir": "../../app/server"
+		"outDir": "../../app/server",
+		"experimentalDecorators": true,
+		"noUnusedLocals": true,
+		"forceConsistentCasingInFileNames": true
 	}
 }

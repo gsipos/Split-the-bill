@@ -1,4 +1,4 @@
-import Model = SplitTheBill.Model;
+import * as Model from '../../shared/split-the-bill';
 import * as uuid from 'node-uuid';
 import * as tables from './tables';
 import TableService from './table-service';
@@ -21,12 +21,8 @@ export default class ExpenseItemService {
 
 		row.RowKey = item.RowKey;
 		row.PartitionKey = item.PartitionKey;
-
 		row.amount = item.amount;
-		row['amount@odata.type'] = tables.ODataType.Int64;
-
 		row.expenseId = item.expenseId;
-		row['expense@odata.type'] = tables.ODataType.String;
 
 		return row;
 	}

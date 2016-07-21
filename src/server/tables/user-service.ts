@@ -1,5 +1,4 @@
-import Model = SplitTheBill.Model;
-
+import * as Model from '../../shared/split-the-bill';
 import * as tables from './tables';
 import TableService from './table-service';
 import * as uuid from 'node-uuid';
@@ -25,12 +24,8 @@ export default class UserService {
 
 		row.RowKey = user.RowKey;
 		row.PartitionKey = user.PartitionKey;
-
 		row.name = user.name;
-		row['name@odata.type'] = tables.ODataType.String;
-
 		row.profilePicture = user.profilePicture;
-		row['profilePicture@odata.type'] = tables.ODataType.String;
 
 		return row;
 	}
