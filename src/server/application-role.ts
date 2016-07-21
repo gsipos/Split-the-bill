@@ -1,5 +1,3 @@
-/// <reference path="./references.ts" /> 
-"use strict";
 import Environment from './environment';
 
 export enum Type {

@@ -1,6 +1,3 @@
-/// <reference path="../references.ts" />
-"use strict";
-
 import * as azure from 'azure';
 import * as tables from './tables';
 import Environment from '../environment';
@@ -33,19 +30,19 @@ export default class TableService {
 		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE, createTableCallback);
 		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE_ITEM, createTableCallback);
 	}
-	
+
 	public insertEntity<E extends azure.Entity>(entity: E, tableName: string): Promise<E> {
 		return this.callEntityOperation<E>(this.storageClient.insertEntity, tableName, entity);
 	}
-	
+
 	public pointQueryEntity<E extends azure.Entity>(partitionKey: string, rowKey: string, tableName: string): Promise<E>{
 		return new Promise<E>((resolve, reject) => this.storageClient.queryEntity(tableName, partitionKey, rowKey, this.getThenableStorageCallback(resolve, reject)));
 	}
-	
-	public insertEntities<E extends azure.Entity>(entities: E[], tableName: string): Promise<E[]> {		
+
+	public insertEntities<E extends azure.Entity>(entities: E[], tableName: string): Promise<E[]> {
 		return Promise.all<E>(entities.map(entity => this.insertEntity(entity, tableName)));
 	}
-	
+
 	public getAll<E extends azure.Entity>(tableName: string): Promise<E[]> {
 		var query = new azure.TableQuery();
 		

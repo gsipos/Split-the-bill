@@ -1,5 +1,3 @@
-/// <reference path="../references.ts" />
-"use strict";
 import * as ApplicationRole from '../application-role';
 import * as express from 'express';
 import * as userApi from './user-api';

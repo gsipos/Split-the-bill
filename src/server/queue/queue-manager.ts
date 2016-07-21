@@ -1,4 +1,3 @@
-/// <reference path="../references.ts" />
 import QueueService from './queue-service';
 import {QueueStream} from './queue-stream';
 import {Queues} from './queues';

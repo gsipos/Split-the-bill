@@ -1,5 +1,3 @@
-/// <reference path="../references.ts" />
-"use strict";
 import Model = SplitTheBill.Model;
 
 import * as tables from './tables';

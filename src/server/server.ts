@@ -1,6 +1,3 @@
-/// <reference path="references.ts" />
-"use strict";
-
 import * as startup from  './startup/startup';
 import * as ApplicationRole from './application-role';
 import WebRole from './web/web-role';

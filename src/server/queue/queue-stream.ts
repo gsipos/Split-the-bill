@@ -1,6 +1,3 @@
-/// <reference path="../references.ts" />
-"use strict";
-
 import * as streams from 'stream';
 import * as azure from 'azure';
 import QueueService from './queue-service';

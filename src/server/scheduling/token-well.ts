@@ -1,6 +1,3 @@
-/// <reference path="../../../typings/index.d.ts" />
-"use strict";
-
 export enum TokenWellState {
 	DEPLETED,
 	REFILLING,

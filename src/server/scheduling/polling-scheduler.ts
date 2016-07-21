@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/index.d.ts" />
-"use strict";
 import TokenWell from './token-well';
 
 export interface PollScheduleCallBack {

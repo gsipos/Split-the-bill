@@ -1,5 +1,3 @@
-/// <reference path="../references.ts" />
-"use strict";
 import * as express from 'express';
 import UserService from '../tables/user-service';
 
