@@ -26,9 +26,9 @@ export default class TableService {
 
 	public initializeTables(): void {
 		this.storageClient.createTableIfNotExists(tables.Name.USER, createTableCallback);
-		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE_CATEGORY, createTableCallback);
 		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE, createTableCallback);
 		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE_ITEM, createTableCallback);
+		this.storageClient.createTableIfNotExists(tables.Name.GROUP, createTableCallback);
 	}
 
 	public insertEntity<E extends azure.Entity>(entity: E, tableName: string): Promise<E> {

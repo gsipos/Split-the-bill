@@ -1,6 +1,6 @@
 import * as Model from '../../shared/split-the-bill';
 
-import {odataString, odataInt64, odataDateTime} from './odata-decorators';
+import { odataString, odataInt64, odataDateTime } from './odata-decorators';
 
 export abstract class ODataType {
 	public static ByteArray: string = "Edm.Binary";
@@ -16,8 +16,8 @@ export abstract class ODataType {
 export class Name {
 	public static USER = "User";
 	public static EXPENSE = "Expense";
-    public static EXPENSE_ITEM = "ExpenseItem";
-    public static EXPENSE_CATEGORY = "ExpenseCategory";
+	public static EXPENSE_ITEM = "ExpenseItem";
+	public static GROUP: 'Group' = "Group";
 }
 
 export abstract class Entity implements Model.Entity<string, string>{
@@ -31,40 +31,44 @@ export abstract class Entity implements Model.Entity<string, string>{
 export class User extends Entity implements Model.User {
 	@odataString
 	public name: string;
+
 	@odataString
 	public profilePicture: string;
-}
-
-export class ExpenseCategory extends Entity implements Model.ExpenseCategory {
-	@odataString
-	public icon: string;
-	@odataString
-	public name: string;
-	@odataString
-	public description: string;
 }
 
 export class Expense extends Entity implements Model.Expense {
 	@odataString
 	public totalAmount: number;
+
 	@odataDateTime
 	public spentAt: Date;
+
 	@odataString
 	public description: string;
+
 	@odataString
-	public category: string;
+	public tags: string;
 }
 
 export class ExpenseItem extends Entity implements Model.ExpenseItem {
 	@odataInt64
 	public amount: number;
+
 	@odataString
 	public expenseId: string;
 }
 
+export class Group extends Entity implements Model.Group {
+	@odataString
+	public name: string;
+
+	@odataString
+	public memberIds: string;
+}
+
 export namespace Internal {
 	export class AuditLog extends Entity {
-				@odataString
-        public message: string;
+		@odataString
+		public message: string;
 	}
 }

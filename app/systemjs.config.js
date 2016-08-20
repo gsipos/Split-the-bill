@@ -4,17 +4,21 @@
  */
 (function(global) {
   // map tells the System loader where to look for things
-  var map = {
-		'*': '../node_modules/*',
-    '@angular': '../node_modules/@angular',
-    'rxjs': '../node_modules/rxjs',
-		'zone.js': '../node_modules/zone.js',
-		'reflect-metadata': '../node_modules/reflect-metadata/Reflect',
+	var map = {
+		'node_modules': 							'../node_modules',
+    'app':                        'app', // 'dist',
+    '@angular':                   '../node_modules/@angular',
+    'angular2-in-memory-web-api': '../node_modules/angular2-in-memory-web-api',
+		'rxjs':                       '../node_modules/rxjs',
+		'zone.js': 										'../node_modules/zone.js',
+		'reflect-metadata': 					'../node_modules/reflect-metadata'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
+		'.':													{ defaultExtension: 'js' },
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
-    'rxjs':                       { defaultExtension: 'js' }
+    'rxjs':                       { defaultExtension: 'js' },
+    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
   };
   var ngPackageNames = [
     'common',
@@ -34,7 +38,7 @@
   }
   // Bundled (~40 requests):
   function packUmd(pkgName) {
-    packages['@angular/'+pkgName] = { main: '/bundles/' + pkgName + '.umd.js', defaultExtension: 'js' };
+    packages['@angular/'+pkgName] = { main: 'bundles/' + pkgName + '.umd.js', defaultExtension: 'js' };
   }
   // Most environments should use UMD; some (Karma) need the individual index files
   var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
@@ -42,9 +46,7 @@
   ngPackageNames.forEach(setPackageConfig);
   var config = {
     map: map,
-    packages: packages,
-		transpiler: false
+		packages: packages
   };
   System.config(config);
-	System.defaultJSExtensions = true;
 })(this);

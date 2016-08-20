@@ -4,14 +4,18 @@
 	<meta charset="utf-8">
 	<title>Split the bill</title>
 	<meta name="description" content="Community spending tracker">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.teal-blue.min.css" />
 </head>
-
 <body>
-	<my-app></my-app>
+	<split-the-bill></split-the-bill>
+	<script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+	<script src="../node_modules/zone.js/dist/zone.js"></script>
+	<script src="../node_modules/reflect-metadata/Reflect.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.31/system.js"></script>
-	<script src="/app/systemjs.config.js"></script>
+	<script src="systemjs.config.js"></script>
 	<script>SystemJS.import('client/index.js');</script>
 </body>
 </html>

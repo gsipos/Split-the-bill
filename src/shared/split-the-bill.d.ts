@@ -12,24 +12,22 @@ interface User extends Entity<UserId, string> {
 	profilePicture: string;
 }
 
-type ExpenseCategoryId = string;
-interface ExpenseCategory extends Entity<ExpenseCategoryId, string> {
-	name: string;
-	icon: string;
-	description: string;
-}
-
 type ExpenseId = string;
 interface Expense extends Entity<ExpenseId, UserId> {
 	totalAmount: number;
 	spentAt: Date;
 	description: string;
-	category: ExpenseCategoryId;
 }
 
 interface ExpenseItem extends Entity<string, UserId> {
 	amount: number;
 	expenseId: string;
+}
+
+type GroupId = string;
+interface Group extends Entity<GroupId, string>{
+	name: string;
+	memberIds: string
 }
 
 export namespace Api {

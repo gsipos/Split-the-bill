@@ -4,13 +4,16 @@
 		"charset": "utf-8",
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
-		"declaration": true,
+		"declaration": false,
 		"sourceMap": true,
-		"module": "commonjs",
+		"module": "amd",
   	"outDir": "../../app/client/",
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"removeComments": false,
 		"moduleResolution": "node"
-	}
+	},
+	"exclude": [
+		"node_modules"
+	]
 }

@@ -3,12 +3,12 @@
 		"target": "ES6",
 		"module": "commonjs",
 		"charset": "utf-8",
-		"declaration": true,
+		"declaration": false,
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
 		"outDir": "../../app/server",
 		"experimentalDecorators": true,
 		"noUnusedLocals": true,
-		"forceConsistentCasingInFileNames": true
+		"forceConsistentCasingInFileNames": false
 	}
 }

@@ -20,7 +20,6 @@ export default class ExpenseService {
 		row.totalAmount = expense.totalAmount;
 		row.spentAt = expense.spentAt;
 		row.description = expense.description;
-		row.category = expense.category;
 
 		return row;
 	}

@@ -1,9 +1,5 @@
-
-import { bootstrap } from '@angular/platform-browser-dynamic/index';
-import {AppComponent} from './app/main.component';
-import 'zone.js';
-import 'reflect-metadata';
-
-bootstrap(AppComponent);
-
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './component/app.module';
+platformBrowserDynamic().bootstrapModule(AppModule);
 console.log('index.ts');
+
