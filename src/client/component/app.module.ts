@@ -1,11 +1,13 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MainComponent }  from './main.component';
+import { MainComponent } from './main.component';
+import { MainNavigation } from './navigation/MainNavigation';
+import { UserCard } from './user/UserCard';
 
 @NgModule({
   imports:      [ BrowserModule ],
-  declarations: [ MainComponent ],
+  declarations: [ MainComponent, MainNavigation, UserCard ],
   bootstrap:    [ MainComponent ]
 })
 export class AppModule { }

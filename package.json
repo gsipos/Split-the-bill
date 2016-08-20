@@ -45,9 +45,7 @@
     "zone.js": "0.6.15"
   },
   "devDependencies": {
-    "catw": "^1.0.1",
     "del-cli": "^0.2.0",
-    "less": "2.7.1",
     "live-server": "^1.0.0",
     "require-dir": "0.3.0",
     "tslint": "3.14.0",
