@@ -1,7 +1,7 @@
 
-interface Entity<I extends string, P extends string> {
-	PartitionKey: P;
-	RowKey: I;
+interface Entity<RowKey extends string, PartitionKey extends string> {
+	PartitionKey: PartitionKey;
+	RowKey: RowKey;
 	Timestamp: Date;
 	etag: string;
 }
@@ -9,7 +9,9 @@ interface Entity<I extends string, P extends string> {
 type UserId = string;
 interface User extends Entity<UserId, string> {
 	name: string;
+	email: string;
 	profilePicture: string;
+	groupKeys: string;
 }
 
 type ExpenseId = string;
@@ -21,13 +23,14 @@ interface Expense extends Entity<ExpenseId, UserId> {
 
 interface ExpenseItem extends Entity<string, UserId> {
 	amount: number;
-	expenseId: string;
+	expenseRowKey: string;
+	expensePartitionKey: string;
 }
 
 type GroupId = string;
 interface Group extends Entity<GroupId, string>{
 	name: string;
-	memberIds: string
+	memberKeys: string
 }
 
 export namespace Api {

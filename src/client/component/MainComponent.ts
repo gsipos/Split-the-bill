@@ -24,8 +24,7 @@ import { MainNavigation } from './navigation/MainNavigation';
 			<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">Content</div>
 			<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">goes</div>
 			<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">here</div>
-				<stb-user-card></stb-user-card>
-			</div>
+			<stb-user-card></stb-user-card>
 		</div>
   </main>
 </div>

@@ -1,15 +1,15 @@
 import * as Model from '../../shared/split-the-bill';
-
 import * as uuid from 'node-uuid';
+import * as Table from './table';
 import * as tables from './tables';
-import TableService from './table-service';
+import { AbstractEntityService } from './abstract-entity-service';
 
-export default class ExpenseService {
-	private tableService = new TableService();
+export default class ExpenseService extends AbstractEntityService<tables.Expense>{
+	tableName = Table.EXPENSE;
 
 	public insert(expense: Model.Expense) {
 		expense.RowKey = uuid.v4();
-		return this.tableService.insertEntity(this.convertModelExpenseToRow(expense), tables.Name.EXPENSE);
+		return this.tableService.insertEntity(this.convertModelExpenseToRow(expense), Table.EXPENSE);
 	}
 
 	private convertModelExpenseToRow(expense: Model.Expense): tables.Expense {

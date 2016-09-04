@@ -2,17 +2,6 @@ import * as Model from '../../shared/split-the-bill';
 
 import { odataString, odataInt64, odataDateTime } from './odata-decorators';
 
-export abstract class ODataType {
-	public static ByteArray: string = "Edm.Binary";
-	public static Boolean: string = "Edm.Boolean";
-	public static DateTime: string = "Edm.DateTime";
-	public static Double: string = "Edm.Double";
-	public static Guid: string = "Edm.Guid";
-	public static Int32: string = "Edm.Int32";
-	public static Int64: string = "Edm.Int64";
-	public static String: string = "Edm.String";
-}
-
 export class Name {
 	public static USER = "User";
 	public static EXPENSE = "Expense";
@@ -28,12 +17,39 @@ export abstract class Entity implements Model.Entity<string, string>{
 	[property: string]: string | number | boolean | Date;
 }
 
+export class Key {
+	private r: string;
+	private p: string;
+
+	constructor(rowKey: string, partitionKey: string) {
+		this.r = rowKey;
+		this.p = partitionKey;
+	}
+
+	public get RowKey() { return this.r; }
+	public set RowKey(rowKey: string) { this.r = rowKey; }
+
+	public get PartitionKey() { return this.p };
+	public set PartitionKey(partitionKey: string) { this.p = partitionKey; }
+
+	public static from(entity: Entity): Key {
+		return new Key(entity.RowKey, entity.PartitionKey);
+	}
+}
+
 export class User extends Entity implements Model.User {
 	@odataString
 	public name: string;
 
 	@odataString
+	public email: string;
+
+	@odataString
 	public profilePicture: string;
+
+	@odataString
+	public groupKeys: string;
+
 }
 
 export class Expense extends Entity implements Model.Expense {
@@ -55,7 +71,10 @@ export class ExpenseItem extends Entity implements Model.ExpenseItem {
 	public amount: number;
 
 	@odataString
-	public expenseId: string;
+	public expenseRowKey: string;
+
+	@odataString
+	public expensePartitionKey: string;
 }
 
 export class Group extends Entity implements Model.Group {
@@ -63,7 +82,7 @@ export class Group extends Entity implements Model.Group {
 	public name: string;
 
 	@odataString
-	public memberIds: string;
+	public memberKeys: string;
 }
 
 export namespace Internal {

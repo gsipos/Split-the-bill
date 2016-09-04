@@ -1,6 +1,6 @@
 import QueueService from './queue-service';
 import {QueueStream} from './queue-stream';
-import {Queues} from './queues';
+import * as Queue from './queue';
 //import * as hl from 'highland';
 
 export default class QueueManager {
@@ -12,7 +12,7 @@ export default class QueueManager {
 
 //    registerQueueProcessor(queueName: string) { }
 
-    createQueue<D>(name: Queues) {
+    createQueue<D>(name: Queue.Name) {
         return new QueueStream<D>(name, this.qSvc);
     }
 

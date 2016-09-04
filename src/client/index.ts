@@ -1,5 +1,5 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './component/app.module';
+import { AppModule } from './component/AppModule';
 platformBrowserDynamic().bootstrapModule(AppModule);
-console.log('index.ts');
+console.log('Application started');
 

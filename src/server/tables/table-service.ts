@@ -1,5 +1,5 @@
 import * as azure from 'azure';
-import * as tables from './tables';
+import * as Table from './table';
 import Environment from '../environment';
 
 var createTableCallback: azure.CreateTableIfNotExistsCallback = (error) => {
@@ -25,13 +25,13 @@ export default class TableService {
 	}
 
 	public initializeTables(): void {
-		this.storageClient.createTableIfNotExists(tables.Name.USER, createTableCallback);
-		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE, createTableCallback);
-		this.storageClient.createTableIfNotExists(tables.Name.EXPENSE_ITEM, createTableCallback);
-		this.storageClient.createTableIfNotExists(tables.Name.GROUP, createTableCallback);
+		this.storageClient.createTableIfNotExists(Table.USER, createTableCallback);
+		this.storageClient.createTableIfNotExists(Table.EXPENSE, createTableCallback);
+		this.storageClient.createTableIfNotExists(Table.EXPENSE_ITEM, createTableCallback);
+		this.storageClient.createTableIfNotExists(Table.GROUP, createTableCallback);
 	}
 
-	public insertEntity<E extends azure.Entity>(entity: E, tableName: string): Promise<E> {
+	public insertEntity<E extends azure.Entity>(entity: E, tableName: Table.Name): Promise<E> {
 		return this.callEntityOperation<E>(this.storageClient.insertEntity, tableName, entity);
 	}
 
@@ -39,11 +39,11 @@ export default class TableService {
 		return new Promise<E>((resolve, reject) => this.storageClient.queryEntity(tableName, partitionKey, rowKey, this.getThenableStorageCallback(resolve, reject)));
 	}
 
-	public insertEntities<E extends azure.Entity>(entities: E[], tableName: string): Promise<E[]> {
+	public insertEntities<E extends azure.Entity>(entities: E[], tableName: Table.Name): Promise<E[]> {
 		return Promise.all<E>(entities.map(entity => this.insertEntity(entity, tableName)));
 	}
 
-	public getAll<E extends azure.Entity>(tableName: string): Promise<E[]> {
+	public getAll<E extends azure.Entity>(tableName: Table.Name): Promise<E[]> {
 		var query = new azure.TableQuery()
 			.from(tableName);
 
@@ -66,7 +66,7 @@ export default class TableService {
 		};
 	}
 
-	private callEntityOperation<E>(operation: EntityOperationCall<E>, tableName: string, entity: E): Promise<E> {
+	private callEntityOperation<E>(operation: EntityOperationCall<E>, tableName: Table.Name, entity: E): Promise<E> {
 		return new Promise<E>((resolve, reject) => operation(tableName, entity, this.getThenableStorageCallback(resolve, reject)));
 	}
 }

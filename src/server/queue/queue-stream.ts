@@ -1,7 +1,7 @@
 import * as streams from 'stream';
 import * as azure from 'azure';
 import QueueService from './queue-service';
-import * as queues from './queues';
+import * as Queue from './queue';
 
 export class QueueResultHolder<D> {
     public data: D;
@@ -13,7 +13,7 @@ export class QueueResultHolder<D> {
 export class QueueStream<D> extends streams.Duplex {
     public mesageGetCount: number = 50;
     constructor(
-        public queueName: queues.Queues,
+        public queueName: Queue.Name,
         public service: QueueService
     ) {
         super({ objectMode: true });
