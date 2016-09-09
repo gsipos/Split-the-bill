@@ -4,7 +4,7 @@
   "description": "",
   "main": "./app/server/server.js",
   "scripts": {
-    "tsc:client": "call tsc -p src/client --rootDir=__dirname",
+    "tsc:client": "call tsc -p src/client",
     "tsc:client:w": "tsc -p src/client -w",
     "tsc:server": "call tsc -p src/server",
     "tsc:server:w": "tsc -p src/server -w",
@@ -53,6 +53,6 @@
   },
   "private": true,
   "engines": {
-    "node": ">=6.3.0"
+    "node": ">=6.0.0 <=6.2"
   }
 }
