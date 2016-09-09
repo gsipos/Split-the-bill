@@ -8,7 +8,7 @@
 		"sourceMap": true,
 		"module": "amd",
   	"outDir": "../../app/client/",
-		"rootDir": ".",
+		"listFiles": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"removeComments": false,
