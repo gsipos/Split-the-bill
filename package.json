@@ -4,16 +4,16 @@
   "description": "",
   "main": "./app/server/server.js",
   "scripts": {
-    "tsc:client": "tsc -p src/client",
+    "tsc:client": "call tsc -p src/client",
     "tsc:client:w": "tsc -p src/client -w",
-    "tsc:server": "tsc -p src/server",
+    "tsc:server": "call tsc -p src/server",
     "tsc:server:w": "tsc -p src/server -w",
     "tsc": "npm run tsc:client & npm run tsc:server",
     "clean": "del ./app/client & del ./app/server",
     "liveLog": "azure site log tail split-the-bill",
     "serve": "live-server --open=app/index.html",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "postinstall": "npm run tsc & npm run tsc"
+    "postinstall": "npm run tsc"
   },
   "author": "Gergely Sipos",
   "license": "MIT",
