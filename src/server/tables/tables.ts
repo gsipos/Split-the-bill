@@ -85,6 +85,28 @@ export class Group extends Entity implements Model.Group {
 	public memberKeys: string;
 }
 
+export class GroupMembers extends Entity {
+	//user- id, group - partition
+}
+
+export class Payer extends Entity {
+	//user-group partitionKey
+	@odataInt64
+	public cost: number;
+}
+
+export class Debtor extends Entity {
+	//user-group partitionKey
+	@odataInt64
+	public cost: number;
+}
+
+export class Balance extends Entity {
+	//user-group partitionKey
+	@odataInt64
+	public cost: number;
+}
+
 export namespace Internal {
 	export class AuditLog extends Entity {
 		@odataString
