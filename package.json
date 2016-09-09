@@ -13,7 +13,8 @@
     "liveLog": "azure site log tail split-the-bill",
     "serve": "live-server --open=app/index.html",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "postinstall": "npm run tsc"
+		"logdir": "cd src & dir & cd..",
+    "postinstall": "logdir & npm run tsc"
   },
   "author": "Gergely Sipos",
   "license": "MIT",

@@ -7,10 +7,6 @@
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
 		"outDir": "../../app/server",
-		"rootDirs": [
-			"./",
-			"../shared"
-		],
 		"experimentalDecorators": true,
 		"noUnusedLocals": true,
 		"forceConsistentCasingInFileNames": false
