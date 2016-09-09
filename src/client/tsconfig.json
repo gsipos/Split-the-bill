@@ -11,7 +11,8 @@
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"removeComments": false,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"listFiles": true
 	},
 	"exclude": [
 		"node_modules"
