@@ -53,6 +53,7 @@
   },
   "private": true,
   "engines": {
-    "node": "5.9.1"
+    "node": "5.9.1",
+		"npm": "3.9.6"
   }
 }
