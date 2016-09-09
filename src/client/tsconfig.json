@@ -9,8 +9,8 @@
 		"module": "amd",
   	"outDir": "../../app/client/",
 		"rootDirs": [
-			"./",
-			"../shared"
+			"src/client",
+			"src/shared"
 		],
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
