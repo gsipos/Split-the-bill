@@ -8,11 +8,6 @@
 		"sourceMap": true,
 		"module": "amd",
   	"outDir": "../../app/client/",
-		"rootDirs": [
-			"../../node_modules",
-			".",
-			"../shared"
-		],
 		"listFiles": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
@@ -20,6 +15,6 @@
 		"moduleResolution": "node"
 	},
 	"exclude": [
-		"node_modules"
+		"../../node_modules"
 	]
 }
