@@ -24,7 +24,7 @@ export class Initializer {
 				throw new Error('No executor registered for role: ' + Type[roleId]);
 			} else {
 				role.start();
-				console.debug("Role started: " + Type[roleId]);
+				console.log("Role started: " + Type[roleId]);
 			}
 		});
 	}
