@@ -11,7 +11,7 @@ export default class WebRole implements ApplicationRole.RoleInstance {
 		var app = express();
 		app.set('port', Environment.port);
 		app.set('app', __dirname + '/app');
-		app.use(express.static(__dirname + '/app'));
+		app.use('/app', express.static(__dirname + '/app'));
 		//app.use(userApi.api);
 
 		app.get('/omfg', (req: any, res: any) => res.send('Lol it works! :)'));
