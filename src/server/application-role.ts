@@ -11,7 +11,7 @@ export interface RoleInstance {
 }
 
 export class Initializer {
-	private roles: { [roleId: number]: RoleInstance };
+	private roles: { [roleId: number]: RoleInstance } = {};
 
 	public registerRole(role: RoleInstance) {
 		this.roles[role.type] = role;
