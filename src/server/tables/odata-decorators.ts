@@ -10,7 +10,9 @@ export abstract class ODataType {
 }
 
 function createOdataDecorator(odataType: string): PropertyDecorator {
-	return (target, key) => target[`${key}@odata.type`] = odataType;
+	return (target, key) => {
+		target[`${key}@odata.type`] = odataType;
+	};
 }
 
 export const odataString    = createOdataDecorator(ODataType.String);
