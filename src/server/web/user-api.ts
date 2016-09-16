@@ -1,4 +1,4 @@
-import * as express from 'express';
+/*import * as express from 'express';
 import UserService from '../tables/user-service';
 
 var userSvc = new UserService();
@@ -13,3 +13,4 @@ api.put('/user',
 		.then(user => res.send(user)));
 
 api.get('/allUsers', (req, res) => userSvc.getAll().then(userList => res.send(userList)));
+*/
