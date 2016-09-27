@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DomSanitizationService } from '@angular/platform-browser';
 
 @Component({
 	selector: 'stb-user-card',

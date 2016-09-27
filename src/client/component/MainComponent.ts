@@ -4,7 +4,7 @@ import { MainNavigation } from './navigation/MainNavigation';
 
 @Component({
 	selector: 'split-the-bill',
-	directives: [ MDL ],
+	viewProviders: [ MDL ],
 	template: `
 <div mdl class="mdl-layout mdl-js-layout">
   <header class="mdl-layout__header">
