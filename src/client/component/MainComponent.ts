@@ -23,7 +23,9 @@ import { MainNavigation } from './navigation/MainNavigation';
 		<div class="mdl-grid">
 			<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">Content</div>
 			<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">goes</div>
-			<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">here</div>
+			<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+				<a href="/.auth/me" target="_blank">Meeeeee</a>
+			</div>
 			<stb-user-card></stb-user-card>
 			<stb-login></stb-login>
 		</div>
