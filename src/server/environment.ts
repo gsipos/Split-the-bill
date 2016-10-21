@@ -5,6 +5,7 @@ interface ProcessEnvironment {
 	accountKey: string;
 	PORT: number;
 	roles: string;
+	clientId: string;
 }
 
 export class Environment{
@@ -20,6 +21,8 @@ export class Environment{
 	get roles(): appRoles.Type[] {
 		return this.env.roles.split(',').map<appRoles.Type>(role => appRoles.Type[role]);
 	}
+
+	get clientId(): string { return this.env.clientId; }
 }
 
 var env = new Environment();
