@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { UserService, UserProfile } from '../../service/UserService';
 
 @Component({
 	selector: 'stb-user-card',
+	providers: [UserService],
 	template: `
 <style>
 .mdl-card__actions{
@@ -21,20 +23,22 @@ img {
 </style>
 
 <div class="mdl-card mdl-shadow--4dp">
-  <img [src]="user.profilePicture" class="grow">
+  <img [src]="user.imageUrl" class="grow">
 
   <div class="mdl-card__actions">
     <h2 class="mdl-card__title-text">{{user.balance}}</h2>
 		{{user.name}}
+		{{user.email}}
+		{{user.id}}
   </div>
 </div>
 	`
 })
 
 export class UserCard {
-	public user = {
-		name: "John Doe",
-		profilePicture: "https://placeimg.com/400/400/people",
-		balance: 17353
+	public user: UserProfile;
+
+	constructor(userService: UserService) {
+		userService.userProfile.subscribe(profile => this.user = profile);
 	}
 }
