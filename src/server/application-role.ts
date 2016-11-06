@@ -2,7 +2,8 @@ import Environment from './environment';
 
 export enum Type {
     WEB,
-    BACKGROUND,
+		BACKGROUND,
+		TABLE
 }
 
 export interface RoleInstance {

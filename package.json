@@ -4,6 +4,7 @@
   "description": "",
   "main": "./app/server/server.js",
   "scripts": {
+		"html:copy": "copyfiles -u 2 src/client/**/*.html app/client/",
     "tsc:client": "tsc -p src/client",
     "tsc:client:w": "tsc -p src/client -w",
     "tsc:server": "tsc -p src/server",
@@ -11,9 +12,11 @@
     "tsc": "npm run tsc:client & npm run tsc:server",
     "clean": "rimraf ./app/client & rimraf ./app/server & npm prune",
     "liveLog": "azure site log tail split-the-bill",
-    "serve": "live-server --open=app/index.html",
+    "serve": "live-server",
+		"serve2": "npm run build & start-local.cmd",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "postinstall": "npm run tsc"
+		"build": "npm run clean && npm run tsc & npm run html:copy",
+    "postinstall": "npm run build"
   },
   "author": "Gergely Sipos",
   "license": "MIT",
@@ -44,10 +47,11 @@
     "node-uuid": "1.4.7",
     "reflect-metadata": "0.1.8",
     "rxjs": "5.0.0-rc.1",
-    "typescript": "2.0.3",
+    "typescript": "2.0.7",
     "zone.js": "0.6.26"
   },
   "devDependencies": {
+    "copyfiles": "^1.0.0",
     "live-server": "^1.0.0",
     "require-dir": "0.3.1",
     "rimraf": "^2.5.4",

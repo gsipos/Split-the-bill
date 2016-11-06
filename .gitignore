@@ -14,3 +14,4 @@ src/**/*.js.map
 *.njsproj
 obj/
 npm-debug.log
+start-local.cmd

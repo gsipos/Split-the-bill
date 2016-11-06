@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { GapiLoadIndicatorService } from "./GapiLoadIndicatorService";
+import { AsyncSubject, Observable } from 'rxjs';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import { AsyncSubject, Observable } from 'rx';
-import 'gapi';
 
 @Injectable()
 export class GoogleAuthService {
@@ -17,7 +16,10 @@ export class GoogleAuthService {
 	private _userSignedIn: AsyncSubject<boolean> = new AsyncSubject<boolean>();
 	public userBasicProfile: Observable<gapi.auth2.BasicProfile>;
 
-	constructor(gapiLoadIndicator: GapiLoadIndicatorService, private http: Http) {
+	constructor(
+		@Inject(GapiLoadIndicatorService) gapiLoadIndicator: GapiLoadIndicatorService,
+		@Inject(Http) private http: Http
+	) {
 		this.auth2LibLoaded = new Promise((resolve, reject) =>
 			gapiLoadIndicator.gapiLoaded
 				.then(gapi => gapi.load("client:auth2"), () => resolve()));
@@ -26,8 +28,9 @@ export class GoogleAuthService {
 			.then(resultVector => gapi.auth2.init({client_id: resultVector[0]}))
 			.then(() => this.startAuthorization());
 
-		this.userBasicProfile = this.userSignedIn.map<gapi.auth2.BasicProfile>(isSignedIn =>
-			isSignedIn ? this.googleAuth.currentUser.get().getBasicProfile() : undefined);
+//		this.userBasicProfile = this.userSignedIn.map<gapi.auth2.BasicProfile>((isSignedIn: boolean, idx:number) =>
+//			this.googleAuth.currentUser.get().getBasicProfile());
+
 	}
 
 	private startAuthorization() {
@@ -37,7 +40,7 @@ export class GoogleAuthService {
 	}
 
 	private updateSigninStatus(isSignedIn: boolean) {
-		this._userSignedIn.onNext(isSignedIn);
+		//this._userSignedIn.onNext(isSignedIn);
 	}
 
 	private getClientId(): Promise<string> {
