@@ -17,6 +17,7 @@ export default class WebRole implements ApplicationRole.RoleInstance {
 
 		app.use(express.static(root));
 		app.use('/node_modules', express.static(nodeModulesRoot));
+		app.all('/*', (req, res) => res.sendFile('index.html', { root: root })); //enabling html5 mode
 
 		//app.use(userApi.api);
 

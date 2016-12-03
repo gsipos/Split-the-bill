@@ -1,0 +1,37 @@
+<style>
+	 div {
+		 display: flex;
+		 flex: 1;
+		 height: 100%;
+		 width: 100%;
+	 }
+
+	 .login-container {
+		 flex-direction: row;
+	 }
+
+	 .login-placeholder {
+		 flex: 2 0 auto;
+		 background-color: azure;
+	 }
+
+	 .login-panel {
+		 flex: 1 0 auto;
+		 background-color: aquamarine;
+	 }
+</style>
+
+<div class="login-container">
+	<div class="login-placeholder"></div>
+	<div class="login-panel">
+		<div class="mdl-card mdl-shadow--4dp">
+			<div class="mdl-card__title">Login with Google</div>
+				<button
+					class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+					href=".auth/login/google">
+					Button
+				</button>
+			<div class="mdl-card__actions"></div>
+		</div>
+	</div>
+</div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } 				from '@angular/platform-browser';
-import { RouterModule, Route } 	from '@angular/router';
+import { RouterModule } 	from '@angular/router';
 
 import { UserService } from '../service/UserService';
 import { GoogleAuthService } from '../service/auth/GoogleAuthService';
