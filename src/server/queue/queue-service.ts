@@ -2,6 +2,10 @@ import * as azure from 'azure';
 import Environment from '../environment';
 import * as Queue from './queue';
 
+const PromiseCallback = (resolve: Function, reject: Function) =>
+	(err: any, result: any) =>
+		err ? reject(err) : resolve(result);
+
 export default class QueueService{
     public queueClient: azure.QueueService;
 
@@ -10,27 +14,17 @@ export default class QueueService{
         this.queueClient = <azure.QueueService>azure.createQueueService(Environment.accountName, Environment.accountKey).withFilter(retryOperations);
     }
 
-    getMessages(queueName: Queue.Name, options?: azure.GetQueueMessagesOptions): Promise<azure.QueueMessageResult[]> {
-        return new Promise((resolve, reject) =>
-            this.queueClient.getMessages(queueName, options!, this.promiseCallback(resolve, reject)));
+    async getMessages(queueName: Queue.Name, options?: azure.GetQueueMessagesOptions): Promise<azure.QueueMessageResult[]> {
+				return new Promise<azure.QueueMessageResult[]>((resolve, reject) =>
+						this.queueClient.getMessages(queueName, options, PromiseCallback(resolve, reject)));
     }
 
-    deleteMessage(queueName: Queue.Name, messageId: string, popreceipt: string): Promise<boolean> {
-        return new Promise((resolve, reject) =>
-            this.queueClient.deleteMessage(queueName, messageId, popreceipt, this.promiseCallback(resolve, reject)));
+    async deleteMessage(queueName: Queue.Name, messageId: string, popreceipt: string): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) =>
+            this.queueClient.deleteMessage(queueName, messageId, popreceipt, PromiseCallback(resolve, reject)));
     }
 
-    createMessage(queueName: Queue.Name, messageText: string): Promise<azure.QueueMessageResult> {
-        return new Promise((resolve, reject) => this.queueClient.createMessage(queueName, messageText, this.promiseCallback(resolve, reject)));
-    }
-
-    private promiseCallback<T>(resolve: Function, reject: Function): azure.StorageCallback<T> {
-        return (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        };
+    async createMessage(queueName: Queue.Name, messageText: string): Promise<azure.QueueMessageResult> {
+        return new Promise<azure.QueueMessageResult>((resolve, reject) => this.queueClient.createMessage(queueName, messageText, PromiseCallback(resolve, reject)));
     }
 }

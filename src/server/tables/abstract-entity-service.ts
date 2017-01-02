@@ -7,21 +7,29 @@ export abstract class AbstractEntityService<Entity extends tables.Entity> {
 	protected tableService = new TableService();
 	protected tableName: Table.Name;
 
-	public point(rowKey: string, partitionKey: string): Promise<Entity> {
+	public async point(rowKey: string, partitionKey: string): Promise<Entity> {
 		return this.tableService.pointQueryEntity<Entity>(partitionKey, rowKey, this.tableName);
 	}
 
-	public pointKey(key: tables.Key): Promise<Entity> {
+	public async pointKey(key: tables.Key): Promise<Entity> {
 		return this.point(key.RowKey, key.PartitionKey);
 	}
 
-	public getAll(): Promise<Entity> {
-		return this.tableService.getAll(this.tableName);
+	public async getAll(): Promise<Entity[]> {
+		return this.tableService.getAll<Entity>(this.tableName);
 	}
 
-	public insert(item: Entity): Promise<Entity> {
-		item.RowKey = uuid.v4();
+	public async insert(item: Entity): Promise<Entity> {
+		item.RowKey = this.createId(item);
 		return this.tableService.insertEntity(item, Table.EXPENSE_ITEM);
+	}
+
+	public async delete(item: Entity): Promise<boolean> {
+		return this.tableService.delete(this.tableName, item);
+	}
+
+	protected createId(item: Entity): string {
+		return uuid.v4();
 	}
 }
 

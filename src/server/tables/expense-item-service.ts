@@ -7,12 +7,12 @@ import { AbstractEntityService } from './abstract-entity-service';
 export default class ExpenseItemService extends AbstractEntityService<tables.ExpenseItem> {
 	tableName = Table.EXPENSE_ITEM;
 
-	public insert(item: Model.ExpenseItem): Promise<Model.ExpenseItem> {
+	public async insert(item: Model.ExpenseItem): Promise<Model.ExpenseItem> {
 		item.RowKey = uuid.v4();
 		return this.tableService.insertEntity(this.convertModelExpenseItemToRow(item), Table.EXPENSE_ITEM);
 	}
 
-	public insertExpenseItemList(items: Model.ExpenseItem[]) {
+	public async insertExpenseItemList(items: Model.ExpenseItem[]) {
 		var rowItems = items.map(item => this.convertModelExpenseItemToRow(item));
 		return this.tableService.insertEntities(rowItems, Table.EXPENSE_ITEM);
 	}
