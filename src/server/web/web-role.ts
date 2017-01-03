@@ -5,10 +5,38 @@ import * as http from 'http';
 import Environment from '../environment';
 import * as path from 'path';
 
+let feathers: any = require('feathers');
+let rest: any = require('feathers-rest');
+let hooks: any = require('feathers-hooks');
+let socketio: any = require('feathers-socketio');
+let authentication: any = require('feathers-authentication');
+let GoogleStrategy: any = require('passport-google-oauth20').Strategy;
+
+import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
+import * as compression from 'compression';
+
 export default class WebRole implements ApplicationRole.RoleInstance {
 	public type = ApplicationRole.Type.WEB;
 
+	private authenticationOptions = {
+		google: {
+			strategy: GoogleStrategy,
+			clientID: Environment.clientId,
+			clientSecret: Environment.clientSecret,
+			permissions: {
+				authType: 'rerequest',
+				scope: ["https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"]
+			}
+
+		}
+	}
+
 	public start() {
+		this.startExpress();
+	}
+
+	public startExpress() {
 		const root = path.resolve(__dirname+'/../../');
 		const nodeModulesRoot = path.resolve(__dirname + '/../../../node_modules');
 
@@ -29,4 +57,25 @@ export default class WebRole implements ApplicationRole.RoleInstance {
 		});
 
 	}
+
+	private startFeathers() {
+		const root = path.resolve(__dirname+'/../../');
+		const nodeModulesRoot = path.resolve(__dirname + '/../../../node_modules');
+
+		const app: express.Express = feathers();
+		app
+			.use(compression())
+			.options('*', cors())
+			.use(express.static(root))
+			.use('/node_modules', express.static(nodeModulesRoot))
+			.all('/*', (req, res) => res.sendFile('index.html', { root: root })) //enabling html5 mode
+			.use(bodyParser.json())
+			.use(bodyParser.urlencoded({ extended: true }))
+			.configure(hooks())
+			.configure(rest())
+			.configure(authentication(this.authenticationOptions))
+			.configure(socketio());
+
+		app.listen(Environment.port);
+	};
 }

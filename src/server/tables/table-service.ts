@@ -1,5 +1,6 @@
 import * as azure from 'azure';
 import * as Table from './table';
+
 import Environment from '../environment';
 
 var createTableCallback: azure.CreateTableIfNotExistsCallback = (error) => {
@@ -76,3 +77,40 @@ export default class TableService {
 		return new Promise<E>((resolve, reject) => operation(tableName, entity, this.getThenableStorageCallback(resolve, reject)));
 	}
 }
+
+interface FeathersParams {
+	query: any;
+	data: any;
+	result: any;
+}
+
+interface FeathersPage<Resource> {
+		total: number;
+		limit: number;
+		skip: number;
+		data: Resource[];
+}
+
+interface FeathersService<Resource> {
+	find?(params: FeathersParams): Promise<FeathersPage<Resource>>;
+	get(id, params: FeathersParams): Promise<Resource>;
+	create(data: Resource, params: FeathersParams): Promise<Resource>;
+  update?(id, data: Resource, params: FeathersParams): Promise<Resource>;
+  patch?(id, data: Resource, params: FeathersParams): Promise<Resource>;
+  remove(id, params: FeathersParams): Promise<Resource>;
+	setup?(app, path?: string): any;
+}
+
+export class FeathersTableService<E extends azure.Entity> implements FeathersService<E> {
+	tableServise: TableService = new TableService();
+	constructor(public tableName: Table.Name) { }
+
+	get = (id, params) => this.tableServise.pointQueryEntity(params.partitionKey, id, this.tableName);
+	create = (data, params) => this.tableServise.insertEntity(data, this.tableName);
+	async remove(id, params) {
+		const entity = await this.tableServise.pointQueryEntity(params.partitionKey, id, this.tableName);
+		await this.tableServise.delete(this.tableName, entity);
+		return entity;
+	}
+}
+

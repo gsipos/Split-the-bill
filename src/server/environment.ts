@@ -6,6 +6,7 @@ interface ProcessEnvironment {
 	PORT: number;
 	roles: string;
 	clientId: string;
+	clientSecret: string;
 }
 
 export class Environment{
@@ -23,6 +24,8 @@ export class Environment{
 	}
 
 	get clientId(): string { return this.env.clientId; }
+
+	get clientSecret(): string { return this.env.clientSecret; }
 }
 
 var env = new Environment();
