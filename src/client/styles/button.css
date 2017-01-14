@@ -1,0 +1,59 @@
+.button {
+	display: inline-block;
+	border-radius: 0px;
+	background-color: white;
+	border: 2px solid transparent;
+	border-bottom: 2px solid black;
+	color: black;
+	text-align: center;
+	padding: 5px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.button:hover {
+	border: 2px solid black;
+}
+
+.button.primary {
+	background-color: black;
+	border: 2px solid black;
+	color:white;
+}
+
+.button.glow:hover {
+	box-shadow: 0px 0px 10px 0px black;
+}
+
+.button.glow:active {
+	border-radius: 4px;
+	box-shadow: 0px 0px 0px 0px white;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}

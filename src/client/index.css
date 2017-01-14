@@ -1,0 +1,29 @@
+body {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
+
+section {
+	display: flex;
+	height:inherit;
+	width:inherit;
+}
+
+.container {
+	display: flex;
+	flex: 1 0 auto;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.col {
+	flex-direction: column;
+}
+
+.center-center {
+	align-items: center;
+	justify-content: center;
+}

@@ -37,15 +37,17 @@ export default class WebRole implements ApplicationRole.RoleInstance {
 	}
 
 	public startExpress() {
-		const root = path.resolve(__dirname+'/../../');
+		const root = path.resolve(__dirname + '/../../');
+		const clientRoot = root + '/client';
+		console.log("Root:", root);
 		const nodeModulesRoot = path.resolve(__dirname + '/../../../node_modules');
 
 		var app = express();
 		app.set('port', Environment.port);
 
-		app.use(express.static(root));
+		app.use(express.static(clientRoot));
 		app.use('/node_modules', express.static(nodeModulesRoot));
-		app.all('/*', (req, res) => res.sendFile('index.html', { root: root })); //enabling html5 mode
+		app.all('/*', (req, res) => res.sendFile('index.html', { root: clientRoot })); //enabling html5 mode
 
 		//app.use(userApi.api);
 
@@ -58,7 +60,7 @@ export default class WebRole implements ApplicationRole.RoleInstance {
 
 	}
 
-	private startFeathers() {
+	public startFeathers() {
 		const root = path.resolve(__dirname+'/../../');
 		const nodeModulesRoot = path.resolve(__dirname + '/../../../node_modules');
 
@@ -73,8 +75,8 @@ export default class WebRole implements ApplicationRole.RoleInstance {
 			.use(bodyParser.urlencoded({ extended: true }))
 			.configure(hooks())
 			.configure(rest())
-			.configure(authentication(this.authenticationOptions))
-			.configure(socketio());
+			.configure(socketio())
+			.configure(authentication(this.authenticationOptions));
 
 		app.listen(Environment.port);
 	};

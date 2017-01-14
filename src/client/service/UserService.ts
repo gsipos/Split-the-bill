@@ -1,7 +1,6 @@
-import { Injectable, Inject } from '@angular/core';
-import { Http } from '@angular/http';
+
 import { GoogleAuthService } from './auth/GoogleAuthService';
-import { AsyncSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface UserProfile {
 	name: string;
@@ -10,13 +9,12 @@ export interface UserProfile {
 	imageUrl: string;
 }
 
-@Injectable()
+
 export class UserService {
 	public userProfile: Observable<UserProfile | undefined>;
 
 	constructor(
-		@Inject(Http) http: Http,
-		@Inject(GoogleAuthService) googleAuthService: GoogleAuthService) {
+	 googleAuthService: GoogleAuthService) {
 		//this.userProfile = googleAuthService.userBasicProfile.map(p => this.extractUserData(p));
 	}
 

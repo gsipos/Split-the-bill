@@ -5,6 +5,7 @@ built/
 app/client/
 app/server/
 .idea/
+.tmp/
 src/**/*.js
 src/client/*.d.ts
 src/server/*.d.ts

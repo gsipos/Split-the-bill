@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
 
 declare var gapi: any;
 
-@Injectable()
-export class GapiLoadIndicatorService {
+class GapiLoadIndicatorServiceImpl {
 
 	public readonly gapiLoaded: Promise<any>;
 	public readonly gapiClienLoaded: Promise<any>;
@@ -22,6 +20,6 @@ export class GapiLoadIndicatorService {
 					resolve(this.checkIfPresent(predicate, getResult))));
 		}
 	}
-
-
 }
+
+export const GapiLoadIndicatorService = new GapiLoadIndicatorServiceImpl();

@@ -93,21 +93,21 @@ interface FeathersPage<Resource> {
 
 interface FeathersService<Resource> {
 	find?(params: FeathersParams): Promise<FeathersPage<Resource>>;
-	get(id, params: FeathersParams): Promise<Resource>;
+	get(id: string, params: FeathersParams): Promise<Resource>;
 	create(data: Resource, params: FeathersParams): Promise<Resource>;
-  update?(id, data: Resource, params: FeathersParams): Promise<Resource>;
-  patch?(id, data: Resource, params: FeathersParams): Promise<Resource>;
-  remove(id, params: FeathersParams): Promise<Resource>;
-	setup?(app, path?: string): any;
+  update?(id: string, data: Resource, params: FeathersParams): Promise<Resource>;
+  patch?(id: string, data: Resource, params: FeathersParams): Promise<Resource>;
+  remove(id: string, params: FeathersParams): Promise<Resource>;
+	setup?(app: any, path?: string): any;
 }
 
 export class FeathersTableService<E extends azure.Entity> implements FeathersService<E> {
 	tableServise: TableService = new TableService();
 	constructor(public tableName: Table.Name) { }
 
-	get = (id, params) => this.tableServise.pointQueryEntity(params.partitionKey, id, this.tableName);
-	create = (data, params) => this.tableServise.insertEntity(data, this.tableName);
-	async remove(id, params) {
+	get = (id: string, params: any) => this.tableServise.pointQueryEntity(params.partitionKey, id, this.tableName);
+	create = (data: E, params: any) => this.tableServise.insertEntity(data, this.tableName);
+	async remove(id: string, params: any) {
 		const entity = await this.tableServise.pointQueryEntity(params.partitionKey, id, this.tableName);
 		await this.tableServise.delete(this.tableName, entity);
 		return entity;

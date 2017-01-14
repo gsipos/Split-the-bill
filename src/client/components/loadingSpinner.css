@@ -1,0 +1,5 @@
+
+.loading-spinner {
+	font-size: 30px;
+	animation: spin 4s ease-in-out infinite;
+}

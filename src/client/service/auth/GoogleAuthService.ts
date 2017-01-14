@@ -1,15 +1,15 @@
-import { Injectable, Inject } from '@angular/core';
-import { Http } from '@angular/http';
+
 import { GapiLoadIndicatorService } from "./GapiLoadIndicatorService";
 import { AsyncSubject, Observable } from 'rxjs';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import 'gapi';
+import 'gapi.auth2';
 
-@Injectable()
 export class GoogleAuthService {
 	private readonly clientIdUrl = "/appAuth/clientId";
 	private readonly clientIdPromise = this.getClientId();
-	private readonly auth2LibLoaded: Promise<void>;
+	private readonly auth2LibLoaded: Promise<any>;
 
 	private googleAuth: gapi.auth2.GoogleAuth;
 
@@ -17,11 +17,11 @@ export class GoogleAuthService {
 	public userBasicProfile: Observable<gapi.auth2.BasicProfile>;
 
 	constructor(
-		@Inject(GapiLoadIndicatorService) gapiLoadIndicator: GapiLoadIndicatorService,
-		@Inject(Http) private http: Http
+
+
 	) {
 		this.auth2LibLoaded = new Promise((resolve, reject) =>
-			gapiLoadIndicator.gapiLoaded
+			GapiLoadIndicatorService.gapiLoaded
 				.then(gapi => gapi.load("client:auth2"), () => resolve()));
 
 		Promise.all([this.clientIdPromise, this.auth2LibLoaded])
@@ -43,10 +43,10 @@ export class GoogleAuthService {
 		//this._userSignedIn.onNext(isSignedIn);
 	}
 
-	private getClientId(): Promise<string> {
-		return this.http.get(this.clientIdUrl)
+	private getClientId(): any {
+	/*	return this.http.get(this.clientIdUrl)
 			.map(res => res.json().data)
-			.toPromise();
+			.toPromise();*/
 	}
 
 	public get userSignedIn(): Observable<boolean> { return this._userSignedIn; }

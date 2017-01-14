@@ -5,14 +5,20 @@
 		"noImplicitAny": true,
 		"suppressImplicitAnyIndexErrors": true,
 		"declaration": false,
-		"sourceMap": true,
+		"sourceMap": false,
 		"module": "commonjs",
-  	"outDir": "../../app/client/",
+  	"outDir": "../../.tmp/client/",
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"removeComments": false,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"jsx": "react",
+		"baseUrl": "./src/client"
 	},
+	"include": [
+		"./**/*.ts",
+		"./**/*.tsx"
+	],
 	"exclude": [
 		"../../node_modules"
 	]

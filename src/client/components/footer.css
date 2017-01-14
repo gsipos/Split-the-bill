@@ -1,0 +1,12 @@
+.footer{
+	display: flex;
+	flex: 0 0 auto;
+	flex-direction: row;
+	align-self: flex-end;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.devName{
+	font-style: italic;
+}
