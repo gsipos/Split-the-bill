@@ -47,12 +47,12 @@ export default class WebRole implements ApplicationRole.RoleInstance {
 
 		app.use(express.static(clientRoot));
 		app.use('/node_modules', express.static(nodeModulesRoot));
-		app.all('/*', (req, res) => res.sendFile('index.html', { root: clientRoot })); //enabling html5 mode
 
 		//app.use(userApi.api);
 
 		app.get('/omfg', (req: any, res: any) => res.send('Lol it works! :)'));
 		app.get('/appAuth/clientId', (req, res) => res.send(Environment.clientId));
+		app.all('/*', (req, res) => res.sendFile('index.html', { root: clientRoot })); //enabling html5 mode
 
 		http.createServer(app).listen(app.get('port'), () => {
 			console.log('Express server listening on port ' + app.get('port'));

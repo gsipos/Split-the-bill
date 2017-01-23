@@ -1,36 +1,38 @@
 
 import { GapiLoadIndicatorService } from "./GapiLoadIndicatorService";
-import { AsyncSubject, Observable } from 'rxjs';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
-import 'gapi';
-import 'gapi.auth2';
+import { BehaviorSubject } from 'rxjs';
 
-export class GoogleAuthService {
-	private readonly clientIdUrl = "/appAuth/clientId";
-	private readonly clientIdPromise = this.getClientId();
-	private readonly auth2LibLoaded: Promise<any>;
+export enum AuthState {
+	LOADING_LIB,
+	INITIALIZING,
+	CHECKIN_SIGIN,
+	NO_SIGNED_IN_USER,
+	USER_SIGNER_IN,
+	ERROR
+}
 
+class GoogleAuthServiceImpl {
 	private googleAuth: gapi.auth2.GoogleAuth;
 
-	private _userSignedIn: AsyncSubject<boolean> = new AsyncSubject<boolean>();
-	public userBasicProfile: Observable<gapi.auth2.BasicProfile>;
+	public authState = new BehaviorSubject<AuthState>(AuthState.LOADING_LIB);
 
-	constructor(
+	constructor() {
+		this.authenticate();
+	}
 
+	private async authenticate(): Promise<any>{
+		const gapi = await GapiLoadIndicatorService.gapiLoaded;
+		await this.loadAuth2(gapi);
+		const clientId = await this.getClientId();
+		this.authState.next(AuthState.INITIALIZING);
+		await gapi.auth2.init({ client_id: clientId });
+		this.authState.next(AuthState.CHECKIN_SIGIN);
+		this.startAuthorization();
+	}
 
-	) {
-		this.auth2LibLoaded = new Promise((resolve, reject) =>
-			GapiLoadIndicatorService.gapiLoaded
-				.then(gapi => gapi.load("client:auth2"), () => resolve()));
-
-		Promise.all([this.clientIdPromise, this.auth2LibLoaded])
-			.then(resultVector => gapi.auth2.init({client_id: resultVector[0]}))
-			.then(() => this.startAuthorization());
-
-//		this.userBasicProfile = this.userSignedIn.map<gapi.auth2.BasicProfile>((isSignedIn: boolean, idx:number) =>
-//			this.googleAuth.currentUser.get().getBasicProfile());
-
+	private async loadAuth2(gapi: any): Promise<any> {
+		return new Promise((resolve, reject) =>
+			gapi.load("client:auth2", resolve));
 	}
 
 	private startAuthorization() {
@@ -40,15 +42,22 @@ export class GoogleAuthService {
 	}
 
 	private updateSigninStatus(isSignedIn: boolean) {
-		//this._userSignedIn.onNext(isSignedIn);
+		if (isSignedIn) {
+			this.authState.next(AuthState.USER_SIGNER_IN);
+		} else {
+			this.authState.next(AuthState.NO_SIGNED_IN_USER);
+		}
 	}
 
-	private getClientId(): any {
-	/*	return this.http.get(this.clientIdUrl)
-			.map(res => res.json().data)
-			.toPromise();*/
+	private async getClientId(): Promise<string> {
+		return fetch('/appAuth/clientId').then(res => res.text());
 	}
 
-	public get userSignedIn(): Observable<boolean> { return this._userSignedIn; }
 	public get profile(): gapi.auth2.BasicProfile { return this.googleAuth.currentUser.get().getBasicProfile(); }
+
+	public signIn(): void {
+		this.googleAuth.signIn();
+	}
 }
+
+export const GoogleAuthService = new GoogleAuthServiceImpl();

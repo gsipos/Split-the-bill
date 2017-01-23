@@ -1,5 +1,5 @@
 
-declare var gapi: any;
+declare var gapi: any | undefined;
 
 class GapiLoadIndicatorServiceImpl {
 
@@ -7,8 +7,8 @@ class GapiLoadIndicatorServiceImpl {
 	public readonly gapiClienLoaded: Promise<any>;
 
 	constructor() {
-		this.gapiLoaded = this.checkIfPresent(() => !!gapi, () => gapi);
-		this.gapiClienLoaded = this.checkIfPresent(() => !!gapi.client, () => gapi.client);
+		this.gapiLoaded = this.checkIfPresent(() => !!window['gapi'], () => (gapi));
+		this.gapiClienLoaded = this.checkIfPresent(() => !!window['gapi'] && gapi.client, () => gapi.client);
 	}
 
 	private checkIfPresent<T>(predicate: () => boolean, getResult: () => T): Promise<T> {

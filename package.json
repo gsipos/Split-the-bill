@@ -43,6 +43,7 @@
     "@types/react": "^15.0.0",
     "@types/react-dom": "^0.14.20",
     "@types/rx": "4.1.1",
+    "@types/whatwg-fetch": "0.0.33",
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "azure": "1.2.0-preview",
     "body-parser": "^1.15.2",
@@ -70,7 +71,8 @@
     "react-dom": "^15.4.2",
     "rxjs": "5.0.3",
     "typescript": "2.1.5",
-    "webpack": "^2.2.0-rc.4"
+    "webpack": "^2.2.0-rc.4",
+    "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
     "live-server": "^1.0.0",

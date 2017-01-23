@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
 
 module.exports = {
-	entry: './src/client/index.tsx',
+	entry: ['whatwg-fetch', './src/client/index.tsx'],
 	output: {
 		filename: '/bundle.js',
 		path: './app/client'

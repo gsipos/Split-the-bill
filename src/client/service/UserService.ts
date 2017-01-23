@@ -13,8 +13,7 @@ export interface UserProfile {
 export class UserService {
 	public userProfile: Observable<UserProfile | undefined>;
 
-	constructor(
-	 googleAuthService: GoogleAuthService) {
+	constructor() {
 		//this.userProfile = googleAuthService.userBasicProfile.map(p => this.extractUserData(p));
 	}
 
