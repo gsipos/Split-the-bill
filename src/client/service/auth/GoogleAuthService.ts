@@ -25,7 +25,7 @@ class GoogleAuthServiceImpl {
 		await this.loadAuth2(gapi);
 		const clientId = await this.getClientId();
 		this.authState.next(AuthState.INITIALIZING);
-		await gapi.auth2.init({ client_id: clientId });
+		await this.initAuth2(gapi, clientId);
 		this.authState.next(AuthState.CHECKIN_SIGIN);
 		this.startAuthorization();
 	}
@@ -33,6 +33,12 @@ class GoogleAuthServiceImpl {
 	private async loadAuth2(gapi: any): Promise<any> {
 		return new Promise((resolve, reject) =>
 			gapi.load("client:auth2", resolve));
+	}
+
+	private async initAuth2(gapi: any, clientId: string): Promise<any> {
+		return new Promise((resolve, reject) =>
+			gapi.auth2.init({ client_id: clientId })
+				.then(() => resolve()));
 	}
 
 	private startAuthorization() {
