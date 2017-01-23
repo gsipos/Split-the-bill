@@ -7,7 +7,7 @@ export enum AuthState {
 	INITIALIZING,
 	CHECKIN_SIGIN,
 	NO_SIGNED_IN_USER,
-	USER_SIGNER_IN,
+	USER_SIGNED_IN,
 	ERROR
 }
 
@@ -49,7 +49,7 @@ class GoogleAuthServiceImpl {
 
 	private updateSigninStatus(isSignedIn: boolean) {
 		if (isSignedIn) {
-			this.authState.next(AuthState.USER_SIGNER_IN);
+			this.authState.next(AuthState.USER_SIGNED_IN);
 		} else {
 			this.authState.next(AuthState.NO_SIGNED_IN_USER);
 		}

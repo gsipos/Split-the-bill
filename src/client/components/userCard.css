@@ -1,0 +1,10 @@
+.userCard {
+	border-bottom: 2px solid black;
+	height: 50px;
+	display: flex;
+}
+
+.userCard .image {
+	max-height: 50px;
+	max-width: 50px;
+}
