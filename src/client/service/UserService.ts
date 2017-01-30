@@ -24,7 +24,7 @@ export class UserService {
 				name: basicProfile.getName(),
 				id: basicProfile.getId(),
 				imageUrl: basicProfile.getImageUrl()
-			}
+			};
 		} else {
 			return undefined;
 		}
