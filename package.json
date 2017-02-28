@@ -30,7 +30,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/azure": "0.9.18",
-    "@types/body-parser": "0.0.33",
+    "@types/body-parser": "0.0.34",
     "@types/compression": "0.0.33",
     "@types/cors": "2.8.0",
     "@types/express": "4.0.34",
@@ -60,24 +60,24 @@
     "feathers-hooks": "^1.7.1",
     "feathers-levelup": "^1.1.1",
     "feathers-rest": "^1.6.0",
-    "feathers-socketio": "^1.4.2",
-    "highland": "2.10.1",
-    "html-webpack-plugin": "^2.26.0",
+    "feathers-socketio": "^1.4.3",
+    "highland": "2.10.2",
+    "html-webpack-plugin": "^2.28.0",
     "node-uuid": "1.4.7",
-    "npm-run-all": "^4.0.0",
+    "npm-run-all": "^4.0.2",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "rxjs": "5.0.3",
-    "typescript": "2.1.5",
-    "webpack": "^2.2.0-rc.4",
+    "rxjs": "5.2.0",
+    "typescript": "2.2.1",
+    "webpack": "^2.2.1",
     "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
-    "live-server": "^1.0.0",
-    "rimraf": "^2.5.4",
-    "tslint": "4.1.1"
+    "live-server": "1.2.0",
+    "rimraf": "2.6.1",
+    "tslint": "4.5.1"
   },
   "private": true,
   "engines": {
