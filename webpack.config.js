@@ -1,12 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
+const path = require('path');
 
 module.exports = {
-	entry: ['whatwg-fetch', './src/client/index.tsx'],
+	entry: ['./src/client/index.tsx'],
 	output: {
-		filename: '/bundle.js',
-		path: './app/client'
+		filename: './bundle.js',
+		path: path.resolve(__dirname, './app/client')
 	},
 	resolve: {
 		modules: ['src/client/', 'node_modules'],

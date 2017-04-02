@@ -5,11 +5,10 @@ import "./login.css";
 import { LoadingSpinner } from "./loadingSpinner";
 import { Footer } from "./footer";
 import { UserCard }from "./userCard";
-
-import { GoogleAuthService, AuthState } from "../service/auth/GoogleAuthService";
+import { firebase, loggedIn } from "../service/firebase.service";
 
 interface LoginState {
-	authState: AuthState;
+	loggedIn: boolean;
 }
 
 export class Login extends React.Component<any, LoginState> {
@@ -18,14 +17,12 @@ export class Login extends React.Component<any, LoginState> {
 	constructor() {
 		super();
 		this.state = {
-			authState: AuthState.LOADING_LIB
+			loggedIn: false
 		};
 	}
 
 	componentDidMount() {
-		this.authStateSubscription = GoogleAuthService.authState.subscribe({
-			next: s => this.setState({ authState: s })
-		});
+		loggedIn.then(() => this.setState({ loggedIn: true }));
 	}
 
 	componentWillUnmoun() {
@@ -41,19 +38,19 @@ export class Login extends React.Component<any, LoginState> {
 						<LoadingSpinner />
 					</div>
 					<div className="loginUserSignin container col center-center fade-right-in">
-						{this.state.authState === AuthState.NO_SIGNED_IN_USER &&
+						{!this.state.loggedIn &&
 							<button className="button glow primary" onClick={(e) => this.onSignIn()}>
 								<span>Sign in with Google</span>
 							</button>
 						}
-						{this.state.authState === AuthState.USER_SIGNED_IN &&
+						{this.state.loggedIn &&
 							<UserCard
-								name={GoogleAuthService.profile.getName()}
-								email={GoogleAuthService.profile.getEmail()}
-								image={GoogleAuthService.profile.getImageUrl()}
+								name={firebase.auth().currentUser.displayName}
+								email={firebase.auth().currentUser.email}
+								image={firebase.auth().currentUser.photoURL}
 							/>
 						}
-						<div>{this.getAuthStateMessage(this.state.authState)}</div>
+
 					</div>
 				</div>
 				<Footer />
@@ -61,17 +58,7 @@ export class Login extends React.Component<any, LoginState> {
 		);
 	}
 
-	private getAuthStateMessage(authState: AuthState) {
-		switch (authState) {
-			case AuthState.LOADING_LIB: return "Preparing authentication.";
-			case AuthState.INITIALIZING: return "Initializing.";
-			case AuthState.CHECKIN_SIGIN: return "Checking who you are.";
-			case AuthState.USER_SIGNED_IN: return "You're signed in.";
-			case AuthState.NO_SIGNED_IN_USER: return "Please sign in.";
-		}
-	}
-
 	private onSignIn() {
-		GoogleAuthService.signIn();
+
 	}
 }

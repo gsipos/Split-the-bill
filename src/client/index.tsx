@@ -6,6 +6,7 @@ import "./styles/button.css";
 import "./index.css";
 
 import { Login } from "./components/login";
+import "./service/firebase.service";
 
 ReactDOM.render(
 		<Login />,
