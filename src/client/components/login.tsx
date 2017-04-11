@@ -6,6 +6,7 @@ import { LoadingSpinner } from "./loadingSpinner";
 import { Footer } from "./footer";
 import { UserCard }from "./userCard";
 import { firebase, loggedIn } from "../service/firebase.service";
+import { userService } from '../service/UserService';
 
 interface LoginState {
 	loggedIn: boolean;
@@ -23,6 +24,7 @@ export class Login extends React.Component<any, LoginState> {
 
 	componentDidMount() {
 		loggedIn.then(() => this.setState({ loggedIn: true }));
+		userService.ensureUserEntityExists();
 	}
 
 	componentWillUnmoun() {

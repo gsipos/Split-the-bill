@@ -6,37 +6,35 @@ interface Entity<RowKey extends string, PartitionKey extends string> {
 	etag: string;
 }
 
-type UserId = string;
-interface User extends Entity<UserId, string> {
+interface Database {
+	user: { [userKey: string]: User; },
+	group: { [groupKey: string]: Group; }
+}
+
+interface User {
 	name: string;
 	email: string;
 	profilePicture: string;
-	groupKeys: string;
+	groupKeys: string[];
 }
 
-type ExpenseId = string;
-interface Expense extends Entity<ExpenseId, UserId> {
+interface Expense {
+	userId: string;
+	groupId: string;
 	totalAmount: number;
 	spentAt: Date;
 	description: string;
 }
 
-interface ExpenseItem extends Entity<string, UserId> {
+interface ExpenseItem {
 	amount: number;
 	expenseRowKey: string;
 	expensePartitionKey: string;
 }
 
-type GroupId = string;
-interface Group extends Entity<GroupId, string>{
+interface Group {
 	name: string;
-	memberKeys: string
+	memberKeys: string;
+	owners: string[];
 }
 
-export namespace Api {
-		interface SaveExpense {
-		userId: UserId;
-		expense: Expense;
-		items: ExpenseItem[];
-		}
-}

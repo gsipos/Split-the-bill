@@ -1,18 +1,36 @@
-import { firebase } from './firebase.service';
-import { Observable } from 'rxjs';
+import { firebase, loggedIn, database } from './firebase.service';
 
-export interface UserProfile {
-	name: string;
-	email: string;
-	id: string;
-	imageUrl: string;
-}
-
-
-export class UserService {
-	public userProfile: Observable<UserProfile | undefined>;
+class UserService {
 
 	constructor() {
-		//this.userProfile = googleAuthService.userBasicProfile.map(p => this.extractUserData(p));
+		this.ensureUserEntityExists();
+	}
+
+	public ensureUserEntityExists() {
+		debugger;
+		loggedIn
+			.then(() => database
+				.ref('user')
+				.child(firebase.auth().currentUser.uid)
+				.once('value'))
+			.then(snapshot => !snapshot && database
+				.ref(this.currentUserPath)
+				.set(this.createUser()));
+	}
+
+	private createUser() {
+		const currentUser = firebase.auth().currentUser;
+		return {
+			name: currentUser.displayName,
+			email: currentUser.email,
+			profilePicture: currentUser.photoURL,
+			groupKeys: <string[]>[]
+		};
+	}
+
+	public get currentUserPath() {
+		return 'user/' + firebase.auth().currentUser.uid;
 	}
 }
+
+export const userService = new UserService();
